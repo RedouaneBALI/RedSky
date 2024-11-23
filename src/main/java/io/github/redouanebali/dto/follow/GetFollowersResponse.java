@@ -1,5 +1,6 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto.follow;
 
+import io.github.redouanebali.dto.Actor;
 import java.util.List;
 import lombok.Data;
 

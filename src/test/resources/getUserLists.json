@@ -1,0 +1,72 @@
+{
+  "lists": [
+    {
+      "uri": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lbn3psieem2z",
+      "cid": "bafyreibxha4eaii3xvk7yacyhvthpmoa6m5kb5um7ixsde3milyytsovqm",
+      "name": "Test list",
+      "purpose": "app.bsky.graph.defs#curatelist",
+      "listItemCount": 2,
+      "indexedAt": "2024-11-23T18:10:53.012Z",
+      "labels": [],
+      "viewer": {
+        "muted": false
+      },
+      "creator": {
+        "did": "did:plc:tavdd37id64nlh74vaclzuwp",
+        "handle": "redtheone.bsky.social",
+        "displayName": "Red-1",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:tavdd37id64nlh74vaclzuwp/bafkreifselloixxis63i67g3ekkmnarklf2w5epmdpm4omvxkz53hczgxm@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "following"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false,
+          "following": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.follow/3lbmb42rnqm27",
+          "followedBy": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.follow/3lbmilxqrxu2b"
+        },
+        "labels": [],
+        "createdAt": "2023-08-23T20:42:03.254Z",
+        "description": "Jamais dans la tendance, toujours dans la bonne direction.",
+        "indexedAt": "2024-11-19T20:14:56.999Z"
+      },
+      "description": "for API"
+    },
+    {
+      "uri": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z",
+      "cid": "bafyreiahovzicw2ggvexbzzfwsm3jhifd2yi3kolbmjzrn3b7mwkchhe3a",
+      "name": "Personnalités FR",
+      "purpose": "app.bsky.graph.defs#curatelist",
+      "listItemCount": 8,
+      "indexedAt": "2024-11-23T07:38:02.724Z",
+      "labels": [],
+      "viewer": {
+        "muted": false
+      },
+      "creator": {
+        "did": "did:plc:tavdd37id64nlh74vaclzuwp",
+        "handle": "redtheone.bsky.social",
+        "displayName": "Red-1",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:tavdd37id64nlh74vaclzuwp/bafkreifselloixxis63i67g3ekkmnarklf2w5epmdpm4omvxkz53hczgxm@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "following"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false,
+          "following": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.follow/3lbmb42rnqm27",
+          "followedBy": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.follow/3lbmilxqrxu2b"
+        },
+        "labels": [],
+        "createdAt": "2023-08-23T20:42:03.254Z",
+        "description": "Jamais dans la tendance, toujours dans la bonne direction.",
+        "indexedAt": "2024-11-19T20:14:56.999Z"
+      },
+      "description": "Politiques, journalistes."
+    }
+  ]
+}

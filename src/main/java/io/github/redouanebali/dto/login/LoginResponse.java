@@ -1,4 +1,4 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto.login;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,4 +1,4 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,5 +9,5 @@ public class LoginRequest {
 
   private String identifier;
   private String password;
-  
+
 }

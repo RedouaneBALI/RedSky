@@ -1,4 +1,4 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto;
 
 import lombok.Data;
 

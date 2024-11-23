@@ -1,4 +1,4 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto.post;
 
 import java.time.Instant;
 import lombok.Data;

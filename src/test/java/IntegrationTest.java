@@ -3,13 +3,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.github.redouanebali.library.BlueskyClient;
-import io.github.redouanebali.library.dto.Actor;
-import io.github.redouanebali.library.dto.CreateRecordResponse;
-import io.github.redouanebali.library.dto.DeleteRecordResponse;
-import io.github.redouanebali.library.dto.GetFollowersResponse;
-import io.github.redouanebali.library.dto.GetFollowsResponse;
-import io.github.redouanebali.library.dto.GetLikesResponse;
+import io.github.redouanebali.BlueskyClient;
+import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.follow.GetFollowersResponse;
+import io.github.redouanebali.dto.follow.GetFollowsResponse;
+import io.github.redouanebali.dto.like.GetLikesResponse;
+import io.github.redouanebali.dto.like.GetLikesResponse.Like;
+import io.github.redouanebali.dto.lists.GetUserListsResponse;
+import io.github.redouanebali.dto.lists.UserList;
+import io.github.redouanebali.dto.post.CreateRecordResponse;
+import io.github.redouanebali.dto.post.DeleteRecordResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -67,16 +70,23 @@ public class IntegrationTest {
   }
 
   @Test
-  public void getAtUri() throws IOException {
+  public void getAtUriFromUrl() throws IOException {
     System.out.println(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h"));
   }
 
   @Test
-  public void getLikes() throws IOException {
-    GetLikesResponse likesResponse = BS_CLIENT.getLikes("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h");
-    assertNotNull(likesResponse);
-    assertFalse(likesResponse.getLikes().isEmpty());
-    assertTrue(likesResponse.getLikes().size() > 15);
+  public void getLikes1stPage() throws IOException {
+    GetLikesResponse response = BS_CLIENT.getLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25", null);
+    assertNotNull(response);
+    assertFalse(response.getLikes().isEmpty());
+    assertTrue(response.getLikes().size() > 15);
+  }
+
+  @Test
+  public void getAllLikes() throws IOException {
+    List<Like> response = BS_CLIENT.getLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25");
+    assertNotNull(response);
+    assertTrue(response.size() > 150);
   }
 
   @Test
@@ -102,13 +112,37 @@ public class IntegrationTest {
     assertFalse(response.getFollowers().isEmpty());
     assertTrue(response.getFollowers().size() > 40);
     assertNotNull(response.getCursor());
+    response.getFollowers().stream().map(Actor::getHandle).toList().forEach(System.out::println);
+
   }
 
   @Test
   public void getAllFollowers() throws IOException {
-    List<Actor> follows = BS_CLIENT.getFollowers("redtheone.bsky.social");
-    assertTrue(follows.size() > 150);
-    follows.stream().map(Actor::getHandle).toList().forEach(System.out::println);
+    List<Actor> response = BS_CLIENT.getFollowers("redtheone.bsky.social");
+    assertTrue(response.size() > 150);
+    // response.stream().map(Actor::getHandle).toList().forEach(System.out::println);
   }
 
+  @Test
+  public void getUserLists1stPage() throws IOException {
+    GetUserListsResponse response = BS_CLIENT.getUserLists("redtheone.bsky.social", null);
+    assertNotNull(response);
+    assertFalse(response.getLists().isEmpty());
+    assertNotNull(response.getLists().getFirst().getUri());
+    response.getLists().stream().map(UserList::getName).toList().forEach(System.out::println);
+  }
+
+  @Test
+  public void getAllUserLists() throws IOException {
+    List<UserList> response = BS_CLIENT.getUserLists("redtheone.bsky.social");
+    assertTrue(response.size() > 1);
+    response.stream().map(UserList::getName).toList().forEach(System.out::println);
+  }
+
+  @Test
+  public void getUserList() throws IOException {
+    List<Actor> response = BS_CLIENT.getUserList("at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z");
+    assertNotNull(response);
+    response.stream().map(Actor::getHandle).forEach(System.out::println);
+  }
 }

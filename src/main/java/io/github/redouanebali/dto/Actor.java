@@ -1,4 +1,4 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;

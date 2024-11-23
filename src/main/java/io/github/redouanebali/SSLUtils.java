@@ -1,4 +1,4 @@
-package io.github.redouanebali.library;
+package io.github.redouanebali;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;

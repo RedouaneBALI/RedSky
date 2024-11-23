@@ -1,6 +1,7 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto.like;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.github.redouanebali.dto.Actor;
 import java.util.List;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ public class GetLikesResponse {
 
   private String     uri;
   private List<Like> likes;
+  private String     cursor;
 
   @Data
   @JsonIgnoreProperties(ignoreUnknown = true)

@@ -1,5 +1,6 @@
-package io.github.redouanebali.library.dto;
+package io.github.redouanebali.dto.post;
 
+import io.github.redouanebali.dto.AtUri;
 import lombok.Data;
 
 @Data
