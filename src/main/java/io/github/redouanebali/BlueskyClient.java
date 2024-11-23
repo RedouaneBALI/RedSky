@@ -30,7 +30,12 @@ import okhttp3.Response;
 
 public class BlueskyClient implements IBlueskyClient {
 
-  private static final String       BASE_URL = "https://bsky.social/xrpc/";
+  private static final String       BASE_URL         = "https://bsky.social/xrpc/";
+  private static final String       APPLICATION_JSON = "application/json";
+  private static final String       AUTHORIZATION    = "Authorization";
+  private static final String       BEARER           = "Bearer ";
+  private static final String       CURSOR           = "cursor";
+  private static final String       EMPTY_BODY       = "Empty body in response";
   private final        OkHttpClient client;
   private final        ObjectMapper objectMapper;
   private              String       accessToken;
@@ -49,9 +54,9 @@ public class BlueskyClient implements IBlueskyClient {
       String handle = matcher.group(1);
       String rkey   = matcher.group(2);
 
-      String did = getDidFromHandle(handle);
+      String actorDid = getDidFromHandle(handle);
 
-      return "at://" + did + "/app.bsky.feed.post/" + rkey;
+      return "at://" + actorDid + "/app.bsky.feed.post/" + rkey;
     }
 
     throw new IllegalArgumentException("URL invalide : " + url);
@@ -77,7 +82,7 @@ public class BlueskyClient implements IBlueskyClient {
 
     RequestBody body = RequestBody.create(
         objectMapper.writeValueAsString(loginRequest),
-        MediaType.parse("application/json")
+        MediaType.parse(APPLICATION_JSON)
     );
 
     Request request = new Request.Builder()
@@ -104,12 +109,12 @@ public class BlueskyClient implements IBlueskyClient {
 
     RequestBody body = RequestBody.create(
         objectMapper.writeValueAsString(createRecordRequest),
-        MediaType.parse("application/json")
+        MediaType.parse(APPLICATION_JSON)
     );
 
     Request request = new Request.Builder()
         .url(BASE_URL + "com.atproto.repo.createRecord")
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .post(body)
         .build();
 
@@ -131,12 +136,12 @@ public class BlueskyClient implements IBlueskyClient {
 
     RequestBody body = RequestBody.create(
         objectMapper.writeValueAsString(deleteRecordRequest),
-        MediaType.parse("application/json")
+        MediaType.parse(APPLICATION_JSON)
     );
 
     Request request = new Request.Builder()
         .url(BASE_URL + "com.atproto.repo.deleteRecord")
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .post(body)
         .build();
 
@@ -147,7 +152,6 @@ public class BlueskyClient implements IBlueskyClient {
         throw new IOException("empty body");
       }
       String responseBody = response.body().string();
-      System.out.println(responseBody);
       return objectMapper.readValue(responseBody, DeleteRecordResponse.class);
     }
 
@@ -156,11 +160,11 @@ public class BlueskyClient implements IBlueskyClient {
   public GetLikesResponse getLikes(String recordUrl, String cursor) throws IOException {
     String url = BASE_URL + "app.bsky.feed.getLikes?uri=" + getAtUriFromUrl(recordUrl);
     if (cursor != null && !cursor.isEmpty()) {
-      url += "&cursor=" + cursor;
+      url += "&" + CURSOR + "=" + cursor;
     }
     Request request = new Request.Builder()
         .url(url)
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .get()
         .build();
 
@@ -168,7 +172,7 @@ public class BlueskyClient implements IBlueskyClient {
       if (!response.isSuccessful()) {
         throw new IOException("Get likes failed: " + response);
       } else if (response.body() == null) {
-        throw new IOException("Empty body in response");
+        throw new IOException(EMPTY_BODY);
       }
 
       String responseBody = response.body().string();
@@ -190,12 +194,12 @@ public class BlueskyClient implements IBlueskyClient {
   public GetFollowsResponse getFollows(String actorId, String cursor) throws IOException {
     String url = BASE_URL + "app.bsky.graph.getFollows?actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
-      url += "&cursor=" + cursor;
+      url += "&" + CURSOR + "=" + cursor;
     }
 
     Request request = new Request.Builder()
         .url(url)
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .get()
         .build();
 
@@ -203,7 +207,7 @@ public class BlueskyClient implements IBlueskyClient {
       if (!response.isSuccessful()) {
         throw new IOException("Get follows failed: " + response);
       } else if (response.body() == null) {
-        throw new IOException("Empty body in response");
+        throw new IOException(EMPTY_BODY);
       }
 
       String responseBody = response.body().string();
@@ -225,12 +229,12 @@ public class BlueskyClient implements IBlueskyClient {
   public GetFollowersResponse getFollowers(String actorId, String cursor) throws IOException {
     String url = BASE_URL + "app.bsky.graph.getFollowers?actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
-      url += "&cursor=" + cursor;
+      url += "&" + CURSOR + "=" + cursor;
     }
 
     Request request = new Request.Builder()
         .url(url)
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .get()
         .build();
 
@@ -238,7 +242,7 @@ public class BlueskyClient implements IBlueskyClient {
       if (!response.isSuccessful()) {
         throw new IOException("Get followers failed: " + response.body().string());
       } else if (response.body() == null) {
-        throw new IOException("Empty body in response");
+        throw new IOException(EMPTY_BODY);
       }
 
       String responseBody = response.body().string();
@@ -260,20 +264,20 @@ public class BlueskyClient implements IBlueskyClient {
   public GetUserListsResponse getUserLists(String actorId, String cursor) throws IOException {
     String url = BASE_URL + "app.bsky.graph.getLists?actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
-      url += "&cursor=" + cursor;
+      url += "&" + CURSOR + "=" + cursor;
     }
 
     Request request = new Request.Builder()
         .url(url)
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .get()
         .build();
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get follows failed: " + response);
+        throw new IOException("Get user lists failed: " + response);
       } else if (response.body() == null) {
-        throw new IOException("Empty body in response");
+        throw new IOException(EMPTY_BODY);
       }
 
       String responseBody = response.body().string();
@@ -295,20 +299,20 @@ public class BlueskyClient implements IBlueskyClient {
   public GetUserListResponse getUserList(String listUri, String cursor) throws IOException {
     String url = BASE_URL + "app.bsky.graph.getList?list=" + listUri;
     if (cursor != null && !cursor.isEmpty()) {
-      url += "&cursor=" + cursor;
+      url += "&" + CURSOR + "=" + cursor;
     }
 
     Request request = new Request.Builder()
         .url(url)
-        .header("Authorization", "Bearer " + accessToken)
+        .header(AUTHORIZATION, BEARER + accessToken)
         .get()
         .build();
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get follows failed: " + response);
+        throw new IOException("Get user list failed: " + response);
       } else if (response.body() == null) {
-        throw new IOException("Empty body in response");
+        throw new IOException(EMPTY_BODY);
       }
 
       String responseBody = response.body().string();

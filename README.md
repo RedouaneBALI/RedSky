@@ -1,6 +1,6 @@
 # Project in progress...
 
-Java Library for the [BlueSky API](https://docs.bsky.app/)
+Java Library for the [BlueSky API](https://docs.bsky.app/).
 
 List of the implemented endpoints
 available [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/main/java/io/github/redouanebali/IBlueskyClient.java).
@@ -8,7 +8,7 @@ available [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/main/java/
 # How to use it
 
 See usage
-examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/IntegrationTest.java).
+examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/io.github.redouanebali.IntegrationTest.java).
 
 Credentials can be used with env variable or property file.
 

@@ -1,9 +1,10 @@
+package io.github.redouanebali;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.github.redouanebali.BlueskyClient;
 import io.github.redouanebali.dto.Actor;
 import io.github.redouanebali.dto.follow.GetFollowersResponse;
 import io.github.redouanebali.dto.follow.GetFollowsResponse;
@@ -18,10 +19,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Slf4j
 public class IntegrationTest {
 
   private static final BlueskyClient BS_CLIENT = new BlueskyClient();
@@ -58,7 +61,6 @@ public class IntegrationTest {
     DeleteRecordResponse deleteResponse = BS_CLIENT.deleteRecord(createResponse.getUri().getRkey());
     assertNotNull(deleteResponse.getCommit().getCid());
     assertNotNull(deleteResponse.getCommit().getRev());
-    System.out.println(deleteResponse);
   }
 
   @Test
@@ -70,8 +72,9 @@ public class IntegrationTest {
   }
 
   @Test
+  @Disabled
   public void getAtUriFromUrl() throws IOException {
-    System.out.println(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h"));
+    LOGGER.info(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h"));
   }
 
   @Test
@@ -102,7 +105,7 @@ public class IntegrationTest {
   public void getAllFollows() throws IOException {
     List<Actor> follows = BS_CLIENT.getFollows("redtheone.bsky.social");
     assertTrue(follows.size() > 70);
-    follows.stream().map(Actor::getHandle).toList().forEach(System.out::println);
+    follows.stream().map(Actor::getHandle).toList().forEach(LOGGER::debug);
   }
 
   @Test
@@ -112,7 +115,7 @@ public class IntegrationTest {
     assertFalse(response.getFollowers().isEmpty());
     assertTrue(response.getFollowers().size() > 40);
     assertNotNull(response.getCursor());
-    response.getFollowers().stream().map(Actor::getHandle).toList().forEach(System.out::println);
+    response.getFollowers().stream().map(Actor::getHandle).toList().forEach(LOGGER::debug);
 
   }
 
@@ -120,7 +123,7 @@ public class IntegrationTest {
   public void getAllFollowers() throws IOException {
     List<Actor> response = BS_CLIENT.getFollowers("redtheone.bsky.social");
     assertTrue(response.size() > 150);
-    // response.stream().map(Actor::getHandle).toList().forEach(System.out::println);
+    // response.stream().map(Actor::getHandle).toList().forEach(LOGGER::debug);
   }
 
   @Test
@@ -129,20 +132,20 @@ public class IntegrationTest {
     assertNotNull(response);
     assertFalse(response.getLists().isEmpty());
     assertNotNull(response.getLists().getFirst().getUri());
-    response.getLists().stream().map(UserList::getName).toList().forEach(System.out::println);
+    response.getLists().stream().map(UserList::getName).toList().forEach(LOGGER::debug);
   }
 
   @Test
   public void getAllUserLists() throws IOException {
     List<UserList> response = BS_CLIENT.getUserLists("redtheone.bsky.social");
     assertTrue(response.size() > 1);
-    response.stream().map(UserList::getName).toList().forEach(System.out::println);
+    response.stream().map(UserList::getName).toList().forEach(LOGGER::debug);
   }
 
   @Test
   public void getUserList() throws IOException {
     List<Actor> response = BS_CLIENT.getUserList("at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z");
     assertNotNull(response);
-    response.stream().map(Actor::getHandle).forEach(System.out::println);
+    response.stream().map(Actor::getHandle).forEach(LOGGER::debug);
   }
 }

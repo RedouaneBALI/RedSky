@@ -1,5 +1,6 @@
+package io.github.redouanebali;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.BlueskyClient;
 import io.github.redouanebali.dto.Actor;
 import java.io.File;
 import java.io.FileInputStream;
