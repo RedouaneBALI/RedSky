@@ -1,25 +1,30 @@
-# Project in progress... 
+# Project in progress...
 
-Java Library for [BlueSky API](https://docs.bsky.app/)
+Java Library for the [BlueSky API](https://docs.bsky.app/)
 
-List of implemented methods available [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/main/java/io/github/redouanebali/IBlueskyClient.java).
+List of the implemented endpoints
+available [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/main/java/io/github/redouanebali/IBlueskyClient.java).
 
-# How to use it 
+# How to use it
 
-See usage examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/IntegrationTest.java).
+See usage
+examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/IntegrationTest.java).
 
 Credentials can be used with env variable or property file.
 
-Example : 
+Example :
 
-Environment variables : BLUESKY_USERNAME=xxxxxxxx.bsky.social;BLUESKY_PASSWORD=xxxx-xxxx-xxxx-xxxx
+Environment variables : `BLUESKY_USERNAME=xxxxxxxx.bsky.social;BLUESKY_PASSWORD=xxxx-xxxx-xxxx-xxxx`
+
 ```
       BlueskyClient client = new BlueskyClient();
       String username = System.getenv("BLUESKY_USERNAME");
       String password = System.getenv("BLUESKY_PASSWORD");
       client.login(username, password);
 ```
-or 
+
+or
+
 ```
     BlueskyClient client = new BlueskyClient();
     Properties properties = new Properties();
@@ -30,7 +35,9 @@ or
     String password = properties.getProperty("bluesky.password");
     client.login(username, password);
 ```
-bluesky.properties : 
+
+bluesky.properties :
+
 ```
 bluesky.username=xxxxxxxx.bsky.social
 bluesky.password=xxxx-xxxx-xxxx-xxxx
