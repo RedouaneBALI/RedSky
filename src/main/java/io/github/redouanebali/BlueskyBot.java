@@ -6,19 +6,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BlueskyBot {
 
-  private static final BlueskyClient agent = new BlueskyClient();
+  private static final BlueskyClient client = new BlueskyClient();
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     try {
+      if (System.getenv("BLUESKY_USERNAME") == null || System.getenv("BLUESKY_PASSWORD") == null) {
+        throw new IllegalArgumentException("not username or password found in environnement.");
+      }
       String username = System.getenv("BLUESKY_USERNAME");
       String password = System.getenv("BLUESKY_PASSWORD");
-      agent.login(username, password);
-      agent.createRecord("Premier post via API =D");
-      log.info("Post publié avec succès!");
+      client.login(username, password);
+      // launch bot here
     } catch (Exception e) {
-      log.error("Erreur lors de la publication", e);
-      System.out.println(e.getMessage());
-      System.out.println(e);
+      LOGGER.error("error encountered", e);
     }
   }
 }

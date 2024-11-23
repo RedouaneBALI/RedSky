@@ -1,0 +1,796 @@
+{
+  "follows": [
+    {
+      "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf",
+      "handle": "redthebot.bsky.social",
+      "displayName": "RedTheBot",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:g7c7qgmpmyysvrhuvyqi34pf/bafkreiej2z2cpqmna6vw5nubrxkji57ta5unhppacyubeapqudeho4xwem@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-23T10:13:10.508Z",
+      "description": "👷‍♂️⚒️🚧🏗️ ...",
+      "indexedAt": "2024-11-23T13:06:45.408Z"
+    },
+    {
+      "did": "did:plc:q3nqr6ta2dr757eijffj7jko",
+      "handle": "afarrand.bsky.social",
+      "displayName": "Andrew G. Farrand",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:q3nqr6ta2dr757eijffj7jko/bafkreidqosh7yghj7c3opyam473roe6s6krz647nbvejcv7lorwy4xean4@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "all"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:q3nqr6ta2dr757eijffj7jko",
+          "uri": "at://did:plc:q3nqr6ta2dr757eijffj7jko/app.bsky.actor.profile/self",
+          "cid": "bafyreic245w2rblxrd5ambfjeb6hife6g53oidjmu3mx2rwnxmtyuoxwhe",
+          "val": "!no-unauthenticated",
+          "cts": "1970-01-01T00:00:00.000Z"
+        }
+      ],
+      "createdAt": "2023-09-06T22:37:07.734Z",
+      "description": "North Africa energy analyst | author of The Algerian Dream | American abroad",
+      "indexedAt": "2024-11-12T13:20:34.336Z"
+    },
+    {
+      "did": "did:plc:2dcz5g4uguyprfjt7zkitsnf",
+      "handle": "coryleguen.bsky.social",
+      "displayName": "Cory Le Guen",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:2dcz5g4uguyprfjt7zkitsnf/bafkreic3oiyjb54rrrmnlrspfnxowhoqcz3r7qfdemp5bqu6wewqucfjim@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-27T15:46:20.312Z",
+      "description": "\nEcologiste 💚 \nSaint-Barthélemy/Saint-Martin",
+      "indexedAt": "2024-11-22T19:58:50.916Z"
+    },
+    {
+      "did": "did:plc:56fvynmxyou6urcrxczafvjf",
+      "handle": "joker-05.bsky.social",
+      "displayName": "🔵BlueGirL🔵",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:56fvynmxyou6urcrxczafvjf/bafkreigws3iqujbyb5ycqmxywnezrbz2fvtepalvwt5pr75jqmd7hzwoxu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:56fvynmxyou6urcrxczafvjf",
+          "uri": "at://did:plc:56fvynmxyou6urcrxczafvjf/app.bsky.actor.profile/self",
+          "cid": "bafyreid32gl53pem6v3qj5hjicqe7h3wd4rhnikopqb4rm5exhpa7stale",
+          "val": "!no-unauthenticated",
+          "cts": "2024-11-15T03:46:12.163Z"
+        }
+      ],
+      "createdAt": "2024-11-15T03:46:13.976Z",
+      "description": "Under construction 🚧\nX DM",
+      "indexedAt": "2024-11-22T00:50:12.217Z"
+    },
+    {
+      "did": "did:plc:rlqx6rkerhdcoumso6s7fax7",
+      "handle": "femureur.bsky.social",
+      "displayName": "Femureur ",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:rlqx6rkerhdcoumso6s7fax7/bafkreick3pggkx2tegbxxpiub5wy6ah2kduwf5e3smluui3qygseyr2opu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-22T09:18:01.048Z",
+      "description": "Arobase femureur de la plateforme de micro blogging twitter dot com",
+      "indexedAt": "2024-01-26T02:30:26.275Z"
+    },
+    {
+      "did": "did:plc:vrxfvk7gdv3zhcbvdmvqzivb",
+      "handle": "reinesardine.bsky.social",
+      "displayName": "Reine Sardine ",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:vrxfvk7gdv3zhcbvdmvqzivb/bafkreih536pge77etfcmepcyi2bejgocjs6mvi3iehlecvf5nv7zd64cba@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-09-25T01:29:39.674Z",
+      "description": "Prosélytisme es sardines\n",
+      "indexedAt": "2024-01-26T01:45:53.684Z"
+    },
+    {
+      "did": "did:plc:lfejfzlz6xz2x3wesbnyqqc2",
+      "handle": "da-jibe.bsky.social",
+      "displayName": "Da Real Jibé",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:lfejfzlz6xz2x3wesbnyqqc2/bafkreicbajcxmkiqmbpd6wku7nmnbv63m4lnyhduharj44zn3g4ydg35ce@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-09-11T17:25:38.577Z",
+      "description": "Vinyl lover - Fascist hater.\nshitpost et gros son.",
+      "indexedAt": "2024-11-06T15:00:30.517Z"
+    },
+    {
+      "did": "did:plc:qt26zrewfzeusqbh2r2hcfjz",
+      "handle": "tatatoxique.bsky.social",
+      "displayName": "Tata Toxique",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:qt26zrewfzeusqbh2r2hcfjz/bafkreifl42ojmuhrtieaignohlxetmb4sns3ynelnjw6bxphkxq26yidiu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T08:06:49.986Z",
+      "description": "Free Palestine 🇵🇸",
+      "indexedAt": "2024-11-18T09:09:53.686Z"
+    },
+    {
+      "did": "did:plc:kwgssolq2v7wsk6yer3vj3dv",
+      "handle": "mayasdreams.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:kwgssolq2v7wsk6yer3vj3dv/bafkreib5yctfzsmynq6x5ty7nqx3rebduumyqhrswqgi6jcqotyliuu2ve@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-09-21T09:49:46.969Z",
+      "indexedAt": "2024-01-26T01:40:31.733Z"
+    },
+    {
+      "did": "did:plc:nllbaiya4q77mb5y6pu4kjbi",
+      "handle": "madamecurves.bsky.social",
+      "displayName": "Madame Curves",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:nllbaiya4q77mb5y6pu4kjbi/bafkreierv2hcvbn267ikbagk6oprh2p3fscwmbwzczbjvhirh7ns2bb3ju@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:nllbaiya4q77mb5y6pu4kjbi",
+          "uri": "at://did:plc:nllbaiya4q77mb5y6pu4kjbi/app.bsky.actor.profile/self",
+          "cid": "bafyreif5kvl5z55p634sybrxgbdyh27jdbwmvotsemppfnpkwh3g3basfq",
+          "val": "!no-unauthenticated",
+          "cts": "1970-01-01T00:00:00.000Z"
+        }
+      ],
+      "createdAt": "2023-07-31T15:44:10.568Z",
+      "description": "Antisexiste. Antiraciste. Synesthète. Strat web.",
+      "indexedAt": "2024-11-22T18:26:22.916Z"
+    },
+    {
+      "did": "did:plc:e6oxiuhhazpb7hdwfm3hac4j",
+      "handle": "3arbitroubadour.bsky.social",
+      "displayName": "3arbiTroubadour",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:e6oxiuhhazpb7hdwfm3hac4j/bafkreihcmfkfjb3kkusdtub47i5n6g3242ui7vr2wcdhlgw3pkwf5ykrpm@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-19T10:49:48.837Z",
+      "description": "J’aime manger et marauder",
+      "indexedAt": "2024-11-19T20:57:13.801Z"
+    },
+    {
+      "did": "did:plc:3vhlnbpav3o4prw3xwpbifwy",
+      "handle": "meryamposh.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:3vhlnbpav3o4prw3xwpbifwy/bafkreib5tguwqaikfgxxquzx24qobypqwyff3bifye5uyjo25aa3v3ofs4@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-20T17:16:17.686Z",
+      "indexedAt": "2024-11-20T17:16:17.686Z"
+    },
+    {
+      "did": "did:plc:trtazqgdjf7jt6rsvi6bhfll",
+      "handle": "nana-la-fermiere.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:trtazqgdjf7jt6rsvi6bhfll/bafkreiaidjhhpgtah6efam2hnn6mkjysngkh5fp6exyvrqssl7dypjyosu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T23:17:52.438Z",
+      "description": "🇫🇷🇲🇦 MRE de retour dans le pays de ses parents. Sahraouia. Ici on est gentil.",
+      "indexedAt": "2024-11-19T00:20:01.337Z"
+    },
+    {
+      "did": "did:plc:cl2c2pgljwzhnj76i2wqj3rw",
+      "handle": "halimouah.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:cl2c2pgljwzhnj76i2wqj3rw/bafkreid4oernh5kzfpllpse6sf63gm46jn6iw7oedkwtipxfs22ze6wzfe@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-20T06:19:46.703Z",
+      "description": "Ton agent immobilier préféré.\nBoxeur fatigué et épicurien halal.",
+      "indexedAt": "2024-11-20T06:27:17.303Z"
+    },
+    {
+      "did": "did:plc:caer6me6db3jmhyqix67v3k6",
+      "handle": "sossofresh.bsky.social",
+      "displayName": "Sosso",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:caer6me6db3jmhyqix67v3k6/bafkreihxpisxn76ksunpclhn2y5ql5zisewztlz6bak3lksu7i35g7zy7q@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-12T08:35:24.959Z",
+      "description": "Food pour le corps et pour l’âme. Bon en gros bouffe et musique et livres.",
+      "indexedAt": "2024-11-19T09:37:59.438Z"
+    },
+    {
+      "did": "did:plc:cijmwxv6nhkysh3axddk5aqv",
+      "handle": "1000tonne.bsky.social",
+      "displayName": "Lewis خرا Mille Tonne",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:cijmwxv6nhkysh3axddk5aqv/bafkreibp6wjvjhkoptota62gqhfsh4vw76zj3csmphzgqb5zq2mk5msmpa@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-17T20:31:40.966Z",
+      "description": "Cousin de LiYekhraVitz-célèbre rockstar",
+      "indexedAt": "2024-11-19T21:07:28.799Z"
+    },
+    {
+      "did": "did:plc:ydj372f5xfw3wtbf7boeuacz",
+      "handle": "sirenrogue.bsky.social",
+      "displayName": "N.",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ydj372f5xfw3wtbf7boeuacz/bafkreiefi3hoqfvdr5b5mgev66qtlibjal32565d7rumz64zrp2m5c2tqa@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-19T20:10:18.298Z",
+      "indexedAt": "2024-11-19T20:12:07.299Z"
+    },
+    {
+      "did": "did:plc:mtyrtpatgzqcvpfvoszzkscp",
+      "handle": "quedepassage.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:mtyrtpatgzqcvpfvoszzkscp/bafkreifrivbufbkmwgknyg5d2u424q6non2dqakxkgrg3plf5oacjugawq@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-19T14:00:29.238Z",
+      "indexedAt": "2024-11-19T14:03:48.238Z"
+    },
+    {
+      "did": "did:plc:lnmetomzgin7qfxdsswls6sh",
+      "handle": "shinjuku174.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:lnmetomzgin7qfxdsswls6sh/bafkreigajcwuxpywgdq4x24cenk726lhsap6vtsfe5442h47urcgqa5oqy@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-19T08:21:58.337Z",
+      "indexedAt": "2024-11-19T08:23:16.737Z"
+    },
+    {
+      "did": "did:plc:55alxbz47ubaniq5oalsg46h",
+      "handle": "naimmilsum.bsky.social",
+      "displayName": "Naïm ☄️",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:55alxbz47ubaniq5oalsg46h/bafkreiazyo36lhxigdvhqthvh5wuwkmzfcdxohsuukcmvtlq5ppscrqcyi@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-02-07T09:26:09.514Z",
+      "description": "Musulman ٱلْحَمْدُ لِلَّٰهِ",
+      "indexedAt": "2024-11-19T13:29:57.539Z"
+    },
+    {
+      "did": "did:plc:ghuq6p5gdctfzc7bjjzwjan7",
+      "handle": "berbereleonard.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ghuq6p5gdctfzc7bjjzwjan7/bafkreidh7vlcjky3h3jj2gvy6wlk5cwg4jiwzpll4copa7yiltq3myptwi@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T12:13:12.380Z",
+      "indexedAt": "2024-11-18T12:37:14.480Z"
+    },
+    {
+      "did": "did:plc:ps2xzj4pm2cmwxpvtqt74ila",
+      "handle": "wabsinf.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ps2xzj4pm2cmwxpvtqt74ila/bafkreihvweueovwtyevaw3tygdhokwh6avekdwibv22sktfgkdjiza6nzy@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:ps2xzj4pm2cmwxpvtqt74ila",
+          "uri": "at://did:plc:ps2xzj4pm2cmwxpvtqt74ila/app.bsky.actor.profile/self",
+          "cid": "bafyreiac3e4dx5wdp6vsizj2vfxhd3pngo7xtb2ctdv3i2i2zwmdx4i5oe",
+          "val": "!no-unauthenticated",
+          "cts": "2024-11-17T13:02:47.668Z"
+        }
+      ],
+      "createdAt": "2024-11-17T13:02:48.470Z",
+      "description": "Good vibes…The Sky is blue here.",
+      "indexedAt": "2024-11-20T18:10:02.387Z"
+    },
+    {
+      "did": "did:plc:vwmuvcep2heufyq6amhs3bop",
+      "handle": "habibpotter.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:vwmuvcep2heufyq6amhs3bop/bafkreiew7glrwt2vnxgm75mrk3ggv7om56jtvb4gbmugbrbze3w4ftqcpm@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-09T11:57:08.649Z",
+      "indexedAt": "2024-11-18T23:02:33.740Z"
+    },
+    {
+      "did": "did:plc:zbphpluu2vdaosuqttvw524g",
+      "handle": "assia-syssoun.bsky.social",
+      "displayName": "Syss_Ass",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:zbphpluu2vdaosuqttvw524g/bafkreif5pj2ujdwvr55mxcqlpwvjvwjluzvvjromemj5jrwirdjt2ksnpq@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "all"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T22:16:52.638Z",
+      "indexedAt": "2024-11-19T14:10:08.038Z"
+    },
+    {
+      "did": "did:plc:ssrfaknbvqyzevb4ka3m5gwj",
+      "handle": "yanitolesang.bsky.social",
+      "displayName": "Yanito Le Sang 🇩🇿🇵🇸",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ssrfaknbvqyzevb4ka3m5gwj/bafkreihavezvdkxktzu2ehrmroufntn2o36ersnafh55y2cyasgxfvoacu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-15T17:19:12.965Z",
+      "description": "Elon Musk’s greatest Hater",
+      "indexedAt": "2024-11-15T17:26:32.460Z"
+    },
+    {
+      "did": "did:plc:baz4ofx2watpph2xeryhljjb",
+      "handle": "areskielbachir.bsky.social",
+      "displayName": "🔻🇵🇸 Areski El Bachir 🇵🇸🔻",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:baz4ofx2watpph2xeryhljjb/bafkreicusdpi3jkazi2tjhu5vx6ckpdz67anstqx3bw3rvfhrq5j55nls4@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T19:02:36.779Z",
+      "description": "«Rien ne nous atteindra, en dehors de ce qu'Allah a prescrit pour nous. Il est notre Protecteur. C'est en Allah que les croyants doivent mettre leur confiance».",
+      "indexedAt": "2024-11-19T20:41:42.399Z"
+    },
+    {
+      "did": "did:plc:xlot3rwffnxuamr43kkhsu4g",
+      "handle": "algerinajolie.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:xlot3rwffnxuamr43kkhsu4g/bafkreib5tguwqaikfgxxquzx24qobypqwyff3bifye5uyjo25aa3v3ofs4@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T20:46:21.779Z",
+      "indexedAt": "2024-11-18T20:46:21.779Z"
+    },
+    {
+      "did": "did:plc:oaatqpmpm5imbfs3c4wtx5c4",
+      "handle": "aupaysdenn.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:oaatqpmpm5imbfs3c4wtx5c4/bafkreia7li6psmyty2qgnd4xl3shovbrf3dusfs2cncbpjvg3xn2ssb7qu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2024-11-18T20:31:43.579Z",
+      "indexedAt": "2024-11-18T20:31:43.579Z"
+    },
+    {
+      "did": "did:plc:intx3bdwe4ihjtncqg5pcn5p",
+      "handle": "louan.bsky.social",
+      "displayName": "Louan 🍉",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:intx3bdwe4ihjtncqg5pcn5p/bafkreigfgot3uzehena2vrrtquoutmlnzlridimbfpccccrx3pgo7gxhim@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "all"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-05-04T11:07:49.835Z",
+      "description": "twitter expat, vous me connaissez peut-être en tant que @louanben\n\ncréateur de @emojimashupbot.bsky.social, WordleFR, et d'autre trucs\n\nbento.me/louan\n\nhe/him",
+      "indexedAt": "2024-11-18T14:04:39.980Z"
+    },
+    {
+      "did": "did:plc:4fyy5kwq3krqhaph7qvfvzw6",
+      "handle": "youranonnews.bsky.social",
+      "displayName": "YourAnonNews",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:4fyy5kwq3krqhaph7qvfvzw6/bafkreiatuqtacycawmlj7iwo6zqiladpyglvi7djc5wcgoavzhzmljoqgy@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-05-09T22:00:45.002Z",
+      "description": "We are Anonymous, we are legion, we do not forgive, we do not forget. Expect us. Prepared to go forward w/it. Here live. Not a cat.\nWeb: https://youranon.news\ntwitter: @YourAnonNews\nmastodon: nerdculture.de/@youranonnews",
+      "indexedAt": "2024-11-15T15:22:26.965Z"
+    },
+    {
+      "did": "did:plc:5atuojos7rb3yd53d6ydk6hh",
+      "handle": "jeandupond.bsky.social",
+      "displayName": "Jean Dupond  🔢",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:5atuojos7rb3yd53d6ydk6hh/bafkreihupmrazec4ea2qhvrork2ufobg3awunfnpuuo5tnirmp2dwn2y7a@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-08-19T19:22:10.190Z",
+      "description": "Gauchiste à chats vivant en Bretonnie qui ne se retrouve plus dans aucun parti. Je cuisine un peu et j'aspire au calme, donc si votre vie se résume à un mot en -isme passez votre chemin.\nAccessoirement je cause de trucs devant des élèves dans le supérieur.",
+      "indexedAt": "2024-11-19T11:33:09.438Z"
+    },
+    {
+      "did": "did:plc:mzmye7yt7sora3ilyf66squf",
+      "handle": "lopezthe.bsky.social",
+      "displayName": "LopezThe",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:mzmye7yt7sora3ilyf66squf/bafkreibl3dk7rkdrtf37q42in4zmmrv54ti65sdhovvedmt2enjflfkc3u@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-12T09:06:33.039Z",
+      "description": "En voyage sur cette terre. \"Ex et avoir\" mais toujours solidaire.\nN'aime pas trop les cases à cocher et les petites boîtes où enfermer les gens.",
+      "indexedAt": "2024-01-26T02:15:26.307Z"
+    },
+    {
+      "did": "did:plc:vr6thlxhoyprxhsbvtiigpn2",
+      "handle": "supaschweppes.bsky.social",
+      "displayName": "BORGNE TO BE ALIVE",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:vr6thlxhoyprxhsbvtiigpn2/bafkreihnvllmmxc4awpsj3lb2mpk7dvtveib4htwihfkriaweqgpd5uacy@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-06T04:58:31.754Z",
+      "description": "Mi-rue, mi-précieux. \nLeave your message after the tone",
+      "indexedAt": "2024-11-17T18:24:20.386Z"
+    },
+    {
+      "did": "did:plc:cl4coweq75bc4xloka5ncxjb",
+      "handle": "ingayrissable.bsky.social",
+      "displayName": "inGayrissable",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:cl4coweq75bc4xloka5ncxjb/bafkreia7zgwfmksnuyq4pi7gymw5lfjogglljbewlqdynh4veyofwyoeh4@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-11-11T17:08:42.251Z",
+      "description": "Vagabond 🤍",
+      "indexedAt": "2024-01-26T02:51:36.065Z"
+    },
+    {
+      "did": "did:plc:cvqcjbpz2vgox55xihuo4vsx",
+      "handle": "cateleyalaw.bsky.social",
+      "displayName": "Cateleya ☯️ Law",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:cvqcjbpz2vgox55xihuo4vsx/bafkreica4eyf6zmfcq6bgjer4ctmpwark3voluzeywviollapco7c5nbdu@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "all"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:cvqcjbpz2vgox55xihuo4vsx",
+          "uri": "at://did:plc:cvqcjbpz2vgox55xihuo4vsx/app.bsky.actor.profile/self",
+          "cid": "bafyreihjd4t5l3uczo5l4cz3sjuw4j4uqmbr4a52gjukzbjpdiflpyopou",
+          "val": "!no-unauthenticated",
+          "cts": "1970-01-01T00:00:00.000Z"
+        }
+      ],
+      "createdAt": "2023-10-20T20:12:06.514Z",
+      "description": "#Cybersec #AfroFeministe #AntiRaciste #AntiOppression...🎶Musique🎶 #FWI...#MTL Welcome to my Sky\n#CaribbeanSky #IslandSky #BlackSkyFR #BlackSky\n\nElle/She/Her",
+      "indexedAt": "2024-11-17T09:22:43.364Z"
+    },
+    {
+      "did": "did:plc:nfd3tswpp7vne6btqcv5p6wr",
+      "handle": "hermelamelo.bsky.social",
+      "displayName": "Tropical Gouine 🖤💜🤍",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:nfd3tswpp7vne6btqcv5p6wr/bafkreihqa52rvzadekx5bctpw3fdxjltk23kw46meejsrr4equutk7hbqi@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:nfd3tswpp7vne6btqcv5p6wr",
+          "uri": "at://did:plc:nfd3tswpp7vne6btqcv5p6wr/app.bsky.actor.profile/self",
+          "cid": "bafyreig72eybb7qwqit3wihohcscj2edmrddmlaazorlww2tz7vl7kqtui",
+          "val": "!no-unauthenticated",
+          "cts": "1970-01-01T00:00:00.000Z"
+        }
+      ],
+      "createdAt": "2023-08-05T19:00:10.535Z",
+      "description": "Pas de alt, pas de like. Et encore moins de repost.\n\nælle/elle",
+      "indexedAt": "2024-11-18T12:56:30.982Z"
+    },
+    {
+      "did": "did:plc:oglac4njux2qivv55jkvtnuc",
+      "handle": "grotadmorv.bsky.social",
+      "displayName": "Pookymoune ",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:oglac4njux2qivv55jkvtnuc/bafkreiamcgnvwxnzebxfrr3uqsevx5hxlkj7r6ki5guh5irzv74rw2qslq@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-08-30T07:55:43.116Z",
+      "description": "Le Pokémon lé innocent. \nSuppléante déléguée en Cm1. \nJ'ai effrayé le chien d'un voisin avec un poireau il y a 9 ans.",
+      "indexedAt": "2024-01-26T00:16:41.601Z"
+    },
+    {
+      "did": "did:plc:kietoin37drubgbjswsco3z7",
+      "handle": "spoiledmey.bsky.social",
+      "displayName": "meyo ",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:kietoin37drubgbjswsco3z7/bafkreid5g4lw25r555mleira2ktk3wwyaprnn2kbmzvh2m6tq4ibhcnfla@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-09-15T18:38:20.081Z",
+      "description": "🫶🏼 dick is an abundant ressource",
+      "indexedAt": "2024-01-26T01:28:12.071Z"
+    },
+    {
+      "did": "did:plc:gjkj6b6h6k3i6t665d6ug5bu",
+      "handle": "hogwallifrey.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:gjkj6b6h6k3i6t665d6ug5bu/bafkreiaj2otg2376v7rnu2j5h6d5afqjukerblphoxhxfzzv6s6rka5stm@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-19T04:32:03.863Z",
+      "indexedAt": "2024-01-26T02:25:36.708Z"
+    },
+    {
+      "did": "did:plc:gkyaeiqhfqhvdlhhkmsax7ek",
+      "handle": "olivialiyung.bsky.social",
+      "displayName": "Olivia Li",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:gkyaeiqhfqhvdlhhkmsax7ek/bafkreiazp4u5duokdhjth7u54mwpuaatc7aytpb7kkompbjovfp6pn6yiu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-08-24T13:08:12.161Z",
+      "description": "bien (a)social media bien responsable • comme sur Twitter mais en pire • 🇲🇬🇨🇳 •  🌺 ",
+      "indexedAt": "2024-01-26T00:51:42.064Z"
+    },
+    {
+      "did": "did:plc:ftoyokucgzyckec6a4x7xasd",
+      "handle": "ananarcoco.bsky.social",
+      "displayName": "anarchist pingu",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ftoyokucgzyckec6a4x7xasd/bafkreicmw2mxelysh6sohg4vslwopidon6lotahx3t2pv4y3o63eqwzrwu@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-09-25T04:02:35.815Z",
+      "description": "Juste une meuf\nMontréal (Tiohtià:ke)",
+      "indexedAt": "2024-01-26T01:46:01.046Z"
+    },
+    {
+      "did": "did:plc:mr5vqxthz7jjdaytckf54aif",
+      "handle": "yeuemoi.bsky.social",
+      "displayName": "shn",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:mr5vqxthz7jjdaytckf54aif/bafkreielxlqtjlhxtnilagduhvyhytmdrcipkcn4zvcq3b5s2p76bzs6qy@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "all"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:mr5vqxthz7jjdaytckf54aif",
+          "uri": "at://did:plc:mr5vqxthz7jjdaytckf54aif/app.bsky.actor.profile/self",
+          "cid": "bafyreiamzwzawbgy3ugppttjaryt5inud3kx2ypi43mcrtnz5qwyalef7y",
+          "val": "!no-unauthenticated",
+          "cts": "1970-01-01T00:00:00.000Z"
+        }
+      ],
+      "createdAt": "2023-07-30T03:27:08.266Z",
+      "description": "24 | hopeless romantic & nhiều chuyện.",
+      "indexedAt": "2024-10-18T02:54:27.444Z"
+    },
+    {
+      "did": "did:plc:2kmaqjiri2utuuxtvv7kozfw",
+      "handle": "alikhbz.bsky.social",
+      "displayName": "Ali",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:2kmaqjiri2utuuxtvv7kozfw/bafkreiennraadyf7xd6z3whusbjkhkia74dlhnbo77itdiq4nn42qwdwfi@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-18T20:53:53.391Z",
+      "indexedAt": "2024-01-26T02:24:59.292Z"
+    },
+    {
+      "did": "did:plc:vb3u567ol4nsrqoz2bdft3be",
+      "handle": "sophzt.bsky.social",
+      "displayName": "SMZ",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:vb3u567ol4nsrqoz2bdft3be/bafkreidt4efufxfsjtfpfpovqmbkaaipar54vqklyk6zxz7pihcqq5z3oq@jpeg",
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-10-18T15:56:05.963Z",
+      "description": "𝒷𝑒 𝓉𝒽𝑒 𝓇𝑒𝒶𝓈𝑜𝓃 𝓈𝑜𝓂𝑒𝑜𝓃𝑒 𝓈𝓂𝒾𝓁𝑒𝓈 𝓉𝑜𝒹𝒶𝓎\n\npolitics enthusiasts, lover, 🇲🇦\n",
+      "indexedAt": "2024-01-26T02:24:17.241Z"
+    },
+    {
+      "did": "did:plc:nxdqjci27hjjokssahivbat5",
+      "handle": "khouleuvre.bsky.social",
+      "displayName": "Khouleuvre",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:nxdqjci27hjjokssahivbat5/bafkreic72tksnprlpda6soh4yljy33qt4zvgmoc7g2ulnuk4vmoxjzw7kq@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [
+        {
+          "src": "did:plc:nxdqjci27hjjokssahivbat5",
+          "uri": "at://did:plc:nxdqjci27hjjokssahivbat5/app.bsky.actor.profile/self",
+          "cid": "bafyreihmjehzpsmcmb5cnxlxds6cvcfjhnfwe36g35c5aeieamhx5e35di",
+          "val": "!no-unauthenticated",
+          "cts": "1970-01-01T00:00:00.000Z"
+        }
+      ],
+      "createdAt": "2023-09-28T18:09:47.813Z",
+      "description": "Your favorite pythonista\nSocial sciences • public health • data science • system dynamics \n(il/al ; they/them)",
+      "indexedAt": "2024-07-05T05:36:41.813Z"
+    },
+    {
+      "did": "did:plc:nqyzesw5g7gero4jjaolsrfj",
+      "handle": "denini.bsky.social",
+      "displayName": "Nini ✨ ",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:nqyzesw5g7gero4jjaolsrfj/bafkreiflsxswmggzvven6eib5ae4kz43gu5h2khntgn7zipcmot6w5nyaa@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-09-24T16:02:12.910Z",
+      "description": "In constant denial \nLa romcom mais sans le « rom » \n",
+      "indexedAt": "2024-10-19T10:14:39.141Z"
+    },
+    {
+      "did": "did:plc:66uzj2giqihvnct3yczyqjyq",
+      "handle": "dypticitrique.bsky.social",
+      "displayName": "",
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:66uzj2giqihvnct3yczyqjyq/bafkreifm3cgfe7q6vovtl455p7gj3noufcdyb6rbd6cvncrz2vawlqptcy@jpeg",
+      "associated": {
+        "chat": {
+          "allowIncoming": "following"
+        }
+      },
+      "viewer": {
+        "muted": false,
+        "blockedBy": false
+      },
+      "labels": [],
+      "createdAt": "2023-07-07T01:22:10.402Z",
+      "description": "Un tiens vaut mieux que deux tu l'auras, mon cul c'est du poulet, c'est çui qui dit qui y'est.. La France pue.\n#Bisous",
+      "indexedAt": "2024-08-27T09:24:44.554Z"
+    }
+  ],
+  "subject": {
+    "did": "did:plc:tavdd37id64nlh74vaclzuwp",
+    "handle": "redtheone.bsky.social",
+    "displayName": "Red-1",
+    "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:tavdd37id64nlh74vaclzuwp/bafkreifselloixxis63i67g3ekkmnarklf2w5epmdpm4omvxkz53hczgxm@jpeg",
+    "associated": {
+      "chat": {
+        "allowIncoming": "following"
+      }
+    },
+    "viewer": {
+      "muted": false,
+      "blockedBy": false,
+      "following": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.follow/3lbmb42rnqm27",
+      "followedBy": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.follow/3lbmilxqrxu2b"
+    },
+    "labels": [],
+    "createdAt": "2023-08-23T20:42:03.254Z",
+    "description": "Jamais dans la tendance, toujours dans la bonne direction.",
+    "indexedAt": "2024-11-19T20:14:56.999Z"
+  },
+  "cursor": "3kbxxx7wual2f"
+}

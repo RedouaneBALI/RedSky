@@ -1,0 +1,340 @@
+{
+  "likes": [
+    {
+      "actor": {
+        "did": "did:plc:hofgcpuajgo75442enf7ieed",
+        "handle": "xouyou.bsky.social",
+        "displayName": "XOUYOU",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:hofgcpuajgo75442enf7ieed/bafkreigegvgvqnsirkxcf4twqwrm35dqdia2rosnckegc6cmecta3ittxa@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false,
+          "followedBy": "at://did:plc:hofgcpuajgo75442enf7ieed/app.bsky.graph.follow/3lbmj3kbvi72o"
+        },
+        "labels": [],
+        "createdAt": "2024-11-23T12:12:04.108Z",
+        "description": "chercheur, syndicaliste.\nÀ gauche toute.\nLes utopies d'aujourd'hui sont les réalités de demain.",
+        "indexedAt": "2024-11-23T12:13:47.208Z"
+      },
+      "createdAt": "2024-11-23T13:22:55.741Z",
+      "indexedAt": "2024-11-23T13:22:55.741Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf",
+        "handle": "redthebot.bsky.social",
+        "displayName": "RedTheBot",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:g7c7qgmpmyysvrhuvyqi34pf/bafkreiej2z2cpqmna6vw5nubrxkji57ta5unhppacyubeapqudeho4xwem@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-23T10:13:10.508Z",
+        "description": "👷‍♂️⚒️🚧🏗️ ...",
+        "indexedAt": "2024-11-23T13:06:45.408Z"
+      },
+      "createdAt": "2024-11-23T10:13:44.575Z",
+      "indexedAt": "2024-11-23T10:13:44.575Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:wnpq3x5pob2tfij3nfw6cqkt",
+        "handle": "mrldm.bsky.social",
+        "displayName": "",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:wnpq3x5pob2tfij3nfw6cqkt/bafkreihax7dxdlqpdbhok6nln4njga2l6f3lihv2jo754nzm4qvw3fctra@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false,
+          "followedBy": "at://did:plc:wnpq3x5pob2tfij3nfw6cqkt/app.bsky.graph.follow/3lbmkrlqjij2y"
+        },
+        "labels": [],
+        "createdAt": "2023-07-26T18:47:34.301Z",
+        "description": "Ciné, tech et photos. \nOM\nⵣ",
+        "indexedAt": "2024-11-23T13:04:08.309Z"
+      },
+      "createdAt": "2024-11-21T14:28:55.648Z",
+      "indexedAt": "2024-11-21T14:28:55.648Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:nllbaiya4q77mb5y6pu4kjbi",
+        "handle": "madamecurves.bsky.social",
+        "displayName": "Madame Curves",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:nllbaiya4q77mb5y6pu4kjbi/bafkreierv2hcvbn267ikbagk6oprh2p3fscwmbwzczbjvhirh7ns2bb3ju@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "following"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [
+          {
+            "src": "did:plc:nllbaiya4q77mb5y6pu4kjbi",
+            "uri": "at://did:plc:nllbaiya4q77mb5y6pu4kjbi/app.bsky.actor.profile/self",
+            "cid": "bafyreif5kvl5z55p634sybrxgbdyh27jdbwmvotsemppfnpkwh3g3basfq",
+            "val": "!no-unauthenticated",
+            "cts": "1970-01-01T00:00:00.000Z"
+          }
+        ],
+        "createdAt": "2023-07-31T15:44:10.568Z",
+        "description": "Antisexiste. Antiraciste. Synesthète. Strat web.",
+        "indexedAt": "2024-11-22T18:26:22.916Z"
+      },
+      "createdAt": "2024-11-20T22:18:59.893Z",
+      "indexedAt": "2024-11-20T22:18:58.845Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:ihjeovephjjz5ly7znrvycot",
+        "handle": "raph9999.bsky.social",
+        "displayName": "Raphaël",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ihjeovephjjz5ly7znrvycot/bafkreihmstfphsb2j2aor745432ex7gdjckgp5hmhfr4ir6gpisblalzka@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "following"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [
+          {
+            "src": "did:plc:ihjeovephjjz5ly7znrvycot",
+            "uri": "at://did:plc:ihjeovephjjz5ly7znrvycot/app.bsky.actor.profile/self",
+            "cid": "bafyreid6p2oemvrzfwgmigc5tyxn54kp5h7fyva4j4snqkfrtuahshphby",
+            "val": "!no-unauthenticated",
+            "cts": "1970-01-01T00:00:00.000Z"
+          }
+        ],
+        "createdAt": "2024-01-07T18:44:24.077Z",
+        "indexedAt": "2024-11-17T21:11:44.721Z"
+      },
+      "createdAt": "2024-11-20T21:15:06.676Z",
+      "indexedAt": "2024-11-20T21:15:05.145Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:7twuzdo2a227qprgvp4rjo57",
+        "handle": "zherisson.bsky.social",
+        "displayName": "",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:7twuzdo2a227qprgvp4rjo57/bafkreieyrxzbzhjwdqbv2roxc2br7gu7yjznn6rluetrblytdbdyx4v2a4@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-19T22:02:15.094Z",
+        "indexedAt": "2024-11-19T22:02:15.094Z"
+      },
+      "createdAt": "2024-11-20T07:14:28.553Z",
+      "indexedAt": "2024-11-20T07:14:28.413Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:zwymbbwn5qb3zchjtgrm7ytx",
+        "handle": "warklo.bsky.social",
+        "displayName": "Warklo",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:zwymbbwn5qb3zchjtgrm7ytx/bafkreiexsfe7mda4emniyxm7fek6izwbcwmbeneq7g4776e2c4f4febmfa@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false,
+          "followedBy": "at://did:plc:zwymbbwn5qb3zchjtgrm7ytx/app.bsky.graph.follow/3lbmqpy23dj2v"
+        },
+        "labels": [],
+        "createdAt": "2023-10-29T20:29:06.134Z",
+        "description": "⏚Harsh Electronic Music DJ/Producer/Mix&Master⏚\n⏚Graff x GIF x ImAges x VideoGames x Recycling⏚\n⏚Turbogigaméga-Gauchiste x Psychonaute-Herbivore⏚\n⏚Enfermez Jean-Marine, Libérez Marie-Jeanne⏚\n⏚MuskH8r⏚",
+        "indexedAt": "2024-11-22T21:29:52.415Z"
+      },
+      "createdAt": "2024-11-19T23:40:54.322Z",
+      "indexedAt": "2024-11-19T23:40:54.322Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:itor4hw7bgdxyopxrs4aszub",
+        "handle": "mmmm-mm.bsky.social",
+        "displayName": "",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:itor4hw7bgdxyopxrs4aszub/bafkreicvpk7xxpjsf7u2b72jvqnwvbswdhsgvzola5cokj4zju23zqzdxa@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-19T07:30:31.338Z",
+        "indexedAt": "2024-11-19T07:30:31.338Z"
+      },
+      "createdAt": "2024-11-19T07:31:32.240Z",
+      "indexedAt": "2024-11-19T07:31:32.240Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:tmvshlqb6yh2zg5hyh5coxsq",
+        "handle": "nbuchon.me",
+        "displayName": "mantraktor ❄️",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:tmvshlqb6yh2zg5hyh5coxsq/bafkreihfbyzwexasxa4ej4io2uqer3hyoe2znvgmzlijutxethstdg3qga@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "following"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2023-10-01T17:29:22.887Z",
+        "description": "Dev java ☕\n\nPP by https://piaille.fr/@clirstrim\n\nMastodon : https://mamot.fr/@mantraktor",
+        "indexedAt": "2024-11-12T22:36:25.342Z"
+      },
+      "createdAt": "2024-11-18T22:36:38.579Z",
+      "indexedAt": "2024-11-18T22:36:38.579Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:4nan5nduvxztamkzesk7ybu4",
+        "handle": "sbaake22.bsky.social",
+        "displayName": "Sbaake22",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:4nan5nduvxztamkzesk7ybu4/bafkreievexrfe6gqkq557gigdbgqtrk6t53wao5ipotyjzpd3j6a6rm4zq@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-16T20:08:38.907Z",
+        "indexedAt": "2024-11-16T20:21:06.323Z"
+      },
+      "createdAt": "2024-11-18T21:53:18.532Z",
+      "indexedAt": "2024-11-18T21:53:18.532Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:ydl4cmpbj4jkzudb4x4htftw",
+        "handle": "palmpeg.bsky.social",
+        "displayName": "Palmpeg",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:ydl4cmpbj4jkzudb4x4htftw/bafkreih5tevuvqxmnuwmnh4i4s2d452b577ggje4an4cflbkh5wp5qg57u@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2023-08-17T20:37:49.624Z",
+        "description": "Dino & sometimes geek",
+        "indexedAt": "2024-01-26T00:23:10.656Z"
+      },
+      "createdAt": "2024-11-18T21:39:17.395Z",
+      "indexedAt": "2024-11-18T21:39:17.395Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:4ugih3c34mdswiuqacytt7i7",
+        "handle": "dzscientist.bsky.social",
+        "displayName": "Zack",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:4ugih3c34mdswiuqacytt7i7/bafkreidwt2b6t2nc5abe4jjgo6a3pumyfmfyrk33c5alfpqgyqh5cgahhq@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-18T21:27:20.979Z",
+        "description": "Pharmacien de bureau, tweets entre et pendant les réunions",
+        "indexedAt": "2024-11-18T21:31:07.381Z"
+      },
+      "createdAt": "2024-11-18T21:36:33.350Z",
+      "indexedAt": "2024-11-18T21:36:33.350Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:baz4ofx2watpph2xeryhljjb",
+        "handle": "areskielbachir.bsky.social",
+        "displayName": "🔻🇵🇸 Areski El Bachir 🇵🇸🔻",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:baz4ofx2watpph2xeryhljjb/bafkreicusdpi3jkazi2tjhu5vx6ckpdz67anstqx3bw3rvfhrq5j55nls4@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-18T19:02:36.779Z",
+        "description": "«Rien ne nous atteindra, en dehors de ce qu'Allah a prescrit pour nous. Il est notre Protecteur. C'est en Allah que les croyants doivent mettre leur confiance».",
+        "indexedAt": "2024-11-19T20:41:42.399Z"
+      },
+      "createdAt": "2024-11-18T21:31:54.431Z",
+      "indexedAt": "2024-11-18T21:31:54.304Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:oaatqpmpm5imbfs3c4wtx5c4",
+        "handle": "aupaysdenn.bsky.social",
+        "displayName": "",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:oaatqpmpm5imbfs3c4wtx5c4/bafkreia7li6psmyty2qgnd4xl3shovbrf3dusfs2cncbpjvg3xn2ssb7qu@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2024-11-18T20:31:43.579Z",
+        "indexedAt": "2024-11-18T20:31:43.579Z"
+      },
+      "createdAt": "2024-11-18T21:24:55.312Z",
+      "indexedAt": "2024-11-18T21:24:55.312Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:yo4j4glgngaopr65dcz3kzjb",
+        "handle": "ultragaucho.bsky.social",
+        "displayName": "Ass of Destiny",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:yo4j4glgngaopr65dcz3kzjb/bafkreibpiiknlodydxsmkzb5cjslq4wy4fz6njli2t36lrruhel2frk6vu@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "all"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [],
+        "createdAt": "2023-07-24T15:09:27.212Z",
+        "description": "@UltraGaucho sur twitter\n\nEn construction \n\n\nCouv par @Niebelungen\n",
+        "indexedAt": "2024-03-27T08:22:35.744Z"
+      },
+      "createdAt": "2024-11-18T21:08:14.393Z",
+      "indexedAt": "2024-11-18T21:08:14.393Z"
+    },
+    {
+      "actor": {
+        "did": "did:plc:nfd3tswpp7vne6btqcv5p6wr",
+        "handle": "hermelamelo.bsky.social",
+        "displayName": "Tropical Gouine 🖤💜🤍",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:nfd3tswpp7vne6btqcv5p6wr/bafkreihqa52rvzadekx5bctpw3fdxjltk23kw46meejsrr4equutk7hbqi@jpeg",
+        "associated": {
+          "chat": {
+            "allowIncoming": "following"
+          }
+        },
+        "viewer": {
+          "muted": false,
+          "blockedBy": false
+        },
+        "labels": [
+          {
+            "src": "did:plc:nfd3tswpp7vne6btqcv5p6wr",
+            "uri": "at://did:plc:nfd3tswpp7vne6btqcv5p6wr/app.bsky.actor.profile/self",
+            "cid": "bafyreig72eybb7qwqit3wihohcscj2edmrddmlaazorlww2tz7vl7kqtui",
+            "val": "!no-unauthenticated",
+            "cts": "1970-01-01T00:00:00.000Z"
+          }
+        ],
+        "createdAt": "2023-08-05T19:00:10.535Z",
+        "description": "Pas de alt, pas de like. Et encore moins de repost.\n\nælle/elle",
+        "indexedAt": "2024-11-18T12:56:30.982Z"
+      },
+      "createdAt": "2024-11-18T21:06:22.901Z",
+      "indexedAt": "2024-11-18T21:06:22.426Z"
+    }
+  ],
+  "uri": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.feed.post/3lbat4rmiqk2h"
+}

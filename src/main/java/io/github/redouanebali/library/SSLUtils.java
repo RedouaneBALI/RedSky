@@ -1,4 +1,4 @@
-package io.github.redouanebali;
+package io.github.redouanebali.library;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -12,7 +12,6 @@ public class SSLUtils {
 
   public static OkHttpClient getUnsafeOkHttpClient() {
     try {
-      // Crée un trust manager qui ignore toutes les validations de certificat
       final TrustManager[] trustAllCerts = new TrustManager[]{
           new X509TrustManager() {
             @Override
@@ -30,12 +29,10 @@ public class SSLUtils {
           }
       };
 
-      // Installe le trust manager
       final SSLContext sslContext = SSLContext.getInstance("TLS");
       sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
       final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
-      // Configure le OkHttpClient pour ignorer les erreurs SSL
       return new OkHttpClient.Builder()
           .sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0])
           .hostnameVerifier((hostname, session) -> true)
