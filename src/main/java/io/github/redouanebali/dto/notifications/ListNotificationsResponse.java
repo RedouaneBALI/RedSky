@@ -1,6 +1,6 @@
 package io.github.redouanebali.dto.notifications;
 
-import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.Actor.Actor;
 import io.github.redouanebali.dto.AtUri;
 import io.github.redouanebali.dto.record.Label;
 import io.github.redouanebali.dto.record.ReasonEnum;

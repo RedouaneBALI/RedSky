@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.Actor.Actor;
 import io.github.redouanebali.dto.follow.FollowsResponse;
 import io.github.redouanebali.dto.like.LikesResponse;
 import io.github.redouanebali.dto.lists.UserList;
@@ -94,6 +94,17 @@ public class DeserializationTest {
     assertNotNull(postThread.getThread().getPost().getAuthor().getHandle());
     assertNotNull(postThread.getThread().getPost().getRecord().getText());
     assertEquals(8, postThread.getThread().getReplies().size());
+  }
+
+  @Test
+  public void testDeserializeGetProfile() throws IOException {
+    Path   jsonFilePath = Path.of("src/test/resources/profile.json");
+    String jsonContent  = Files.readString(jsonFilePath);
+    Actor  actor        = objectMapper.readValue(jsonContent, Actor.class);
+    assertNotNull(actor);
+    assertEquals(185, actor.getFollowersCount());
+    assertEquals(82, actor.getFollowsCount());
+    assertEquals("Red-1", actor.getDisplayName());
   }
 
 }

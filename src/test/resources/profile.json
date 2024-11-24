@@ -1,0 +1,92 @@
+{
+  "did": "did:plc:tavdd37id64nlh74vaclzuwp",
+  "handle": "redtheone.bsky.social",
+  "displayName": "Red-1",
+  "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:tavdd37id64nlh74vaclzuwp/bafkreifselloixxis63i67g3ekkmnarklf2w5epmdpm4omvxkz53hczgxm@jpeg",
+  "associated": {
+    "lists": 2,
+    "feedgens": 1,
+    "starterPacks": 0,
+    "labeler": false,
+    "chat": {
+      "allowIncoming": "following"
+    }
+  },
+  "viewer": {
+    "muted": false,
+    "blockedBy": false,
+    "following": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.follow/3lbmb42rnqm27",
+    "followedBy": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.follow/3lbmilxqrxu2b",
+    "knownFollowers": {
+      "count": 2,
+      "followers": [
+        {
+          "did": "did:plc:m5ibvdgcxm4y5psuttiukunj",
+          "handle": "sreyephleung.bsky.social",
+          "displayName": "StephDeLaCompta",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:m5ibvdgcxm4y5psuttiukunj/bafkreib4geygb4lg7hm5g6xajpzsojkrumeuiuewk2v7naltec5fv7we5u@jpeg",
+          "associated": {
+            "chat": {
+              "allowIncoming": "following"
+            }
+          },
+          "viewer": {
+            "muted": false,
+            "blockedBy": false,
+            "following": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.follow/3lbmkotw2oa2o",
+            "followedBy": "at://did:plc:m5ibvdgcxm4y5psuttiukunj/app.bsky.graph.follow/3lbmjydck5523"
+          },
+          "labels": [
+            {
+              "src": "did:plc:m5ibvdgcxm4y5psuttiukunj",
+              "uri": "at://did:plc:m5ibvdgcxm4y5psuttiukunj/app.bsky.actor.profile/self",
+              "cid": "bafyreigedttkhtwn42pkz3d3onv7xm45664a3dfbfst2wcwywcozgp3mjq",
+              "val": "!no-unauthenticated",
+              "cts": "1970-01-01T00:00:00.000Z"
+            }
+          ],
+          "createdAt": "2023-08-18T19:36:28.322Z"
+        },
+        {
+          "did": "did:plc:f66xy7hcy62nuv4eqqb2anak",
+          "handle": "viephemere.bsky.social",
+          "displayName": "Vi",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:f66xy7hcy62nuv4eqqb2anak/bafkreihm7vinrv3zlsul6zypiyxinxf5fhxs7cera27jwpkefq7x6ovwf4@jpeg",
+          "associated": {
+            "chat": {
+              "allowIncoming": "following"
+            }
+          },
+          "viewer": {
+            "muted": false,
+            "blockedBy": false,
+            "following": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.follow/3lbnjiglzko2o",
+            "followedBy": "at://did:plc:f66xy7hcy62nuv4eqqb2anak/app.bsky.graph.follow/3lbmr4m2wsg2v"
+          },
+          "labels": [
+            {
+              "src": "did:plc:f66xy7hcy62nuv4eqqb2anak",
+              "uri": "at://did:plc:f66xy7hcy62nuv4eqqb2anak/app.bsky.actor.profile/self",
+              "cid": "bafyreidab7vkehwnxujj6wecjogqyyjuijjgahvaekxzawif6ls2nomz4y",
+              "val": "!no-unauthenticated",
+              "cts": "1970-01-01T00:00:00.000Z"
+            }
+          ],
+          "createdAt": "2023-08-15T08:15:37.529Z"
+        }
+      ]
+    }
+  },
+  "labels": [],
+  "createdAt": "2023-08-23T20:42:03.254Z",
+  "description": "Jamais dans la tendance, toujours dans la bonne direction.",
+  "indexedAt": "2024-11-19T20:14:56.999Z",
+  "banner": "https://cdn.bsky.app/img/banner/plain/did:plc:tavdd37id64nlh74vaclzuwp/bafkreia7cxds7fe4plyxqarlr7sqftly5ip45wmso25cmxutub2hfdawvm@jpeg",
+  "followersCount": 185,
+  "followsCount": 82,
+  "postsCount": 481,
+  "pinnedPost": {
+    "cid": "bafyreibddmxgp772t2i73xfsuisywom2tgsgji4aci3uc4aewzcdcxqywa",
+    "uri": "at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.feed.post/3lbat4rmiqk2h"
+  }
+}

@@ -1,7 +1,7 @@
 package io.github.redouanebali;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.Actor.Actor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,8 +28,7 @@ public class SerializationTest {
     String password = properties.getProperty("bluesky.password");
 
     if (username == null || password == null) {
-      throw new IllegalArgumentException(
-          "Les propriétés bluesky.username et bluesky.password doivent être définies dans le fichier bluesky.properties.");
+      throw new IllegalArgumentException("no credentials found");
     }
 
     BS_CLIENT.login(username, password);

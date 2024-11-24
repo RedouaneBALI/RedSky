@@ -1,8 +1,10 @@
 package io.github.redouanebali;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.Actor.Actor;
+import io.github.redouanebali.dto.Actor.Profiles;
 import io.github.redouanebali.dto.AtUri;
 import io.github.redouanebali.dto.follow.FollowersResponse;
 import io.github.redouanebali.dto.follow.FollowsResponse;
@@ -23,10 +25,13 @@ import io.github.redouanebali.dto.record.DeleteRecordResponse;
 import io.github.redouanebali.dto.record.PostThreadResponse;
 import io.github.redouanebali.dto.record.ReasonEnum;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -54,7 +59,18 @@ public class BlueskyClient implements IBlueskyClient {
     this.objectMapper = new ObjectMapper();
   }
 
+  private Request getPostRequest(String url, RequestBody body) throws JsonProcessingException {
+    LOGGER.debug("POST " + url);
+
+    return new Request.Builder()
+        .url(url)
+        .header(AUTHORIZATION, BEARER + accessToken)
+        .post(body)
+        .build();
+  }
+
   private Request getGetRequest(String url) {
+    LOGGER.debug("GET " + url);
     return new Request.Builder()
         .url(url)
         .header(AUTHORIZATION, BEARER + accessToken)
@@ -129,11 +145,7 @@ public class BlueskyClient implements IBlueskyClient {
         MediaType.parse(APPLICATION_JSON)
     );
 
-    Request request = new Request.Builder()
-        .url(BASE_URL + "com.atproto.repo.createRecord")
-        .header(AUTHORIZATION, BEARER + accessToken)
-        .post(body)
-        .build();
+    Request request = getPostRequest(BASE_URL + "com.atproto.repo.createRecord", body);
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
@@ -156,11 +168,7 @@ public class BlueskyClient implements IBlueskyClient {
         MediaType.parse(APPLICATION_JSON)
     );
 
-    Request request = new Request.Builder()
-        .url(BASE_URL + "com.atproto.repo.deleteRecord")
-        .header(AUTHORIZATION, BEARER + accessToken)
-        .post(body)
-        .build();
+    Request request = getPostRequest(BASE_URL + "com.atproto.repo.deleteRecord", body);
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
@@ -193,11 +201,11 @@ public class BlueskyClient implements IBlueskyClient {
     }
   }
 
-  public List<Like> getAllLikes(String actorId) throws IOException {
+  public List<Like> getAllLikes(String recordUrl) throws IOException {
     List<Like> result = new ArrayList<>();
     String     cursor = null;
     do {
-      LikesResponse response = getLikes(actorId, cursor);
+      LikesResponse response = getLikes(recordUrl, cursor);
       result.addAll(response.getLikes());
       cursor = response.getCursor();
     } while (cursor != null);
@@ -205,7 +213,7 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   public FollowsResponse getFollows(String actorId, String cursor) throws IOException {
-    String url = BASE_URL + "app.bsky.graph.getFollows?actor=" + actorId;
+    String url = BASE_URL + "app.bsky.graph.getFollows?limit=100&actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
@@ -236,7 +244,7 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   public FollowersResponse getFollowers(String actorId, String cursor) throws IOException {
-    String url = BASE_URL + "app.bsky.graph.getFollowers?actor=" + actorId;
+    String url = BASE_URL + "app.bsky.graph.getFollowers?limit=100&actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
@@ -317,11 +325,11 @@ public class BlueskyClient implements IBlueskyClient {
     }
   }
 
-  public List<Actor> getAllUserList(String actorId) throws IOException {
+  public List<Actor> getAllUserList(String listUri) throws IOException {
     List<Actor> result = new ArrayList<>();
     String      cursor = null;
     do {
-      UserListResponse response = getUserList(actorId, cursor);
+      UserListResponse response = getUserList(listUri, cursor);
       result.addAll(response.getItems().stream().map(ListItem::getSubject).toList());
       cursor = response.getCursor();
     } while (cursor != null);
@@ -375,6 +383,45 @@ public class BlueskyClient implements IBlueskyClient {
 
       String responseBody = response.body().string();
       return objectMapper.readValue(responseBody, PostThreadResponse.class);
+    }
+  }
+
+  @Override
+  public Actor getProfile(final String actorHandle) throws IOException {
+    String url = BASE_URL + "app.bsky.actor.getProfile?actor=" + actorHandle;
+
+    Request request = getGetRequest(url);
+
+    try (Response response = client.newCall(request).execute()) {
+      if (!response.isSuccessful() || response.body() == null) {
+        throw new IOException("Failed to fetch profile : " + response.body().string());
+      }
+      String responseBody = response.body().string();
+      return objectMapper.readValue(responseBody, Actor.class);
+    }
+  }
+
+  @Override
+  public List<Actor> getProfiles(final List<String> actorHandles) throws IOException {
+    if (actorHandles == null || actorHandles.isEmpty()) {
+      throw new IllegalArgumentException("The list of actor handles cannot be null or empty.");
+    }
+
+    String handlesQuery = actorHandles.stream()
+                                      .map(handle -> URLEncoder.encode(handle, StandardCharsets.UTF_8))
+                                      .collect(Collectors.joining("&actors="));
+
+    String url = BASE_URL + "app.bsky.actor.getProfiles?actors=" + handlesQuery;
+
+    Request request = getGetRequest(url);
+
+    try (Response response = client.newCall(request).execute()) {
+      if (!response.isSuccessful() || response.body() == null) {
+        throw new IOException("Failed to fetch profile: " + response.message());
+      }
+      String responseBody = response.body().string();
+
+      return objectMapper.readValue(responseBody, Profiles.class).getProfiles();
     }
   }
 

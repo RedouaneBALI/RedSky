@@ -1,6 +1,6 @@
 package io.github.redouanebali;
 
-import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.Actor.Actor;
 import io.github.redouanebali.dto.follow.FollowersResponse;
 import io.github.redouanebali.dto.follow.FollowsResponse;
 import io.github.redouanebali.dto.like.LikesResponse;
@@ -41,42 +41,42 @@ public interface IBlueskyClient {
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-follows
    */
-  FollowsResponse getFollows(String actorId, String cursor) throws IOException;
+  FollowsResponse getFollows(String actorHandle, String cursor) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-follows
    */
-  List<Actor> getAllFollows(String actorId) throws IOException;
+  List<Actor> getAllFollows(String actorHandle) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-followers
    */
-  FollowersResponse getFollowers(String actorId, String cursor) throws IOException;
+  FollowersResponse getFollowers(String actorHandle, String cursor) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-followers
    */
-  List<Actor> getAllFollowers(String actorId) throws IOException;
+  List<Actor> getAllFollowers(String actorHandle) throws IOException;
 
   /**
-   * https://docs.bsky.app/docs/api/app-bsky-graph-get-lists
+   * Get the user lists of an actor. See https://docs.bsky.app/docs/api/app-bsky-graph-get-lists
    */
-  UserListsResponse getUserLists(String actorId, String cursor) throws IOException;
+  UserListsResponse getUserLists(String actorHandle, String cursor) throws IOException;
 
   /**
-   * https://docs.bsky.app/docs/api/app-bsky-graph-get-lists
+   * Get all the user lists of an actor. See https://docs.bsky.app/docs/api/app-bsky-graph-get-lists
    */
-  List<UserList> getAllUserLists(String actorId) throws IOException;
+  List<UserList> getAllUserLists(String actorHandle) throws IOException;
 
   /**
-   * https://docs.bsky.app/docs/api/app-bsky-graph-get-list
+   * Get a specific user list. See https://docs.bsky.app/docs/api/app-bsky-graph-get-list
    */
   UserListResponse getUserList(String listUri, String cursor) throws IOException;
 
   /**
-   * https://docs.bsky.app/docs/api/app-bsky-graph-get-list
+   * Get the list of actor of a user list. https://docs.bsky.app/docs/api/app-bsky-graph-get-list
    */
-  List<Actor> getAllUserList(String actorId) throws IOException;
+  List<Actor> getAllUserList(String listUri) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-notification-list-notifications
@@ -92,4 +92,14 @@ public interface IBlueskyClient {
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-post-thread
    */
   PostThreadResponse getPostThread(String recordUri) throws IOException;
+
+  /**
+   * https://docs.bsky.app/docs/api/app-bsky-actor-get-profile
+   */
+  Actor getProfile(String actorHandle) throws IOException;
+
+  /**
+   * https://docs.bsky.app/docs/api/app-bsky-actor-get-profiles
+   */
+  List<Actor> getProfiles(List<String> actorHandles) throws IOException;
 }

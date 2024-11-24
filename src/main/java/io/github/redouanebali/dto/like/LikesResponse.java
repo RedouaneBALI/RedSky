@@ -1,7 +1,7 @@
 package io.github.redouanebali.dto.like;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.Actor.Actor;
 import java.util.List;
 import lombok.Data;
 
