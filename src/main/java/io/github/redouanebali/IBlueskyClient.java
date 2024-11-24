@@ -12,6 +12,7 @@ import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notification;
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordResponse;
+import io.github.redouanebali.dto.record.PostThreadResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -86,4 +87,9 @@ public interface IBlueskyClient {
    * https://docs.bsky.app/docs/api/app-bsky-notification-list-notifications
    */
   List<Notification> getAllListNotifications() throws IOException;
+
+  /**
+   * https://docs.bsky.app/docs/api/app-bsky-feed-get-post-thread
+   */
+  PostThreadResponse getPostThread(String recordUri) throws IOException;
 }

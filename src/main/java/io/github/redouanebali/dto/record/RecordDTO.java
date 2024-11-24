@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.redouanebali.dto.Actor;
 import java.time.Instant;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class RecordDTO {
   @JsonInclude(Include.NON_EMPTY)
   private List<String> langs;
   private String       text;
+  private Actor        author;
 
   public RecordDTO(String text) {
     this.text      = text;

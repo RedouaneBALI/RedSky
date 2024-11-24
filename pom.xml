@@ -2,7 +2,22 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>RedSky</artifactId>
+  <artifactId>red-sky</artifactId>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>**/*.class</include>
+          </includes>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.2.2</version>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
@@ -32,12 +47,6 @@
       <version>1.18.30</version>
     </dependency>
     <dependency>
-      <artifactId>lombok</artifactId>
-      <groupId>org.projectlombok</groupId>
-      <scope>provided</scope>
-      <version>1.18.30</version>
-    </dependency>
-    <dependency>
       <artifactId>slf4j-api</artifactId>
       <groupId>org.slf4j</groupId>
       <version>2.0.16</version>
@@ -58,18 +67,19 @@
       <version>1.9.22</version>
     </dependency>
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
+      <groupId>org.junit.jupiter</groupId>
       <scope>test</scope>
+      <version>RELEASE</version>
     </dependency>
     <dependency>
-      <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
-      <version>13.0</version>
+      <groupId>org.jetbrains</groupId>
       <scope>compile</scope>
+      <version>13.0</version>
     </dependency>
   </dependencies>
+
   <groupId>io.github.redouanebali</groupId>
   <modelVersion>4.0.0</modelVersion>
 
@@ -80,6 +90,5 @@
   </properties>
 
   <version>1.0-SNAPSHOT</version>
-
 
 </project>

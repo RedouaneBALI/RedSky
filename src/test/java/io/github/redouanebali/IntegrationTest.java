@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.redouanebali.dto.Actor;
 import io.github.redouanebali.dto.follow.FollowersResponse;
 import io.github.redouanebali.dto.follow.FollowsResponse;
@@ -16,9 +17,12 @@ import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notification;
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordResponse;
+import io.github.redouanebali.dto.record.PostThreadResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Properties;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +55,12 @@ public class IntegrationTest {
 
   @Test
   @Disabled("Just for personal use")
+  public void getAtUriFromUrl() throws IOException {
+    LOGGER.info(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redthebot.bsky.social/post/3lbms7p32qv2m"));
+  }
+
+  @Test
+  @Disabled("Just for personal use")
   public void createRecordTest() throws IOException {
     CreateRecordResponse createResponse = BS_CLIENT.createRecord("Et hop, je viens d'apprendre à pouvoir supprimer mes posts ! \uD83D\uDE0F ✅");
     assertNotNull(createResponse.getUri());
@@ -71,12 +81,6 @@ public class IntegrationTest {
     String atUri         = BS_CLIENT.getAtUriFromUrl(url);
     String expectedAtUri = "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lbms7p32qv2m";
     assertEquals(expectedAtUri, atUri, "AT-URI should match the expected value.");
-  }
-
-  @Test
-  @Disabled("Just for personal use")
-  public void getAtUriFromUrl() throws IOException {
-    LOGGER.info(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h"));
   }
 
   @Test
@@ -164,5 +168,25 @@ public class IntegrationTest {
     assertTrue(notifications.size() > 50);
     assertNotNull(notifications.getFirst().getReason());
     assertNotNull(notifications.getFirst().getAuthor());
+  }
+
+
+  @Test
+  public void testGetPostThread() throws IOException {
+    PostThreadResponse
+        response =
+        BS_CLIENT.getPostThread(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redthebot.bsky.social/post/3lbms7p32qv2m"));
+    assertEquals("redthebot.bsky.social", response.getThread().getPost().getAuthor().getHandle());
+    assertEquals("Test n°526", response.getThread().getPost().getRecord().getText());
+    assertTrue(response.getThread().getPost().getLikeCount() > 0);
+  }
+
+  @Test
+  public void testGetUnansweredNotifications() throws IOException {
+    Path                      jsonFilePath            = Path.of("src/test/resources/listNotifications.json");
+    String                    jsonContent             = Files.readString(jsonFilePath);
+    ListNotificationsResponse listNotifications       = new ObjectMapper().readValue(jsonContent, ListNotificationsResponse.class);
+    List<Notification>        unansweredNotifications = BS_CLIENT.getUnansweredNotifications(listNotifications.getNotifications());
+    assertEquals(1, unansweredNotifications.size());
   }
 }

@@ -2,6 +2,7 @@ package io.github.redouanebali.dto.notifications;
 
 import io.github.redouanebali.dto.Actor;
 import io.github.redouanebali.dto.AtUri;
+import io.github.redouanebali.dto.record.Label;
 import io.github.redouanebali.dto.record.ReasonEnum;
 import io.github.redouanebali.dto.record.RecordDTO;
 import java.util.List;
@@ -28,18 +29,5 @@ public class ListNotificationsResponse {
     private String      indexedAt;
     private List<Label> labels;
 
-    @Data
-    public static class Label {
-
-      private Integer ver;
-      private String  src;
-      private String  uri;
-      private String  cid;
-      private String  val;
-      private Boolean neg;
-      private String  cts;
-      private String  exp;
-      private String  sig;
-    }
   }
 }

@@ -13,6 +13,7 @@ import io.github.redouanebali.dto.lists.UserList;
 import io.github.redouanebali.dto.lists.UserListResponse;
 import io.github.redouanebali.dto.lists.UserListsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
+import io.github.redouanebali.dto.record.PostThreadResponse;
 import io.github.redouanebali.dto.record.ReasonEnum;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,7 +26,7 @@ public class DeserializationTest {
 
   @Test
   void testDeserializeGetLikesResponse() throws IOException {
-    Path          jsonFilePath = Path.of("src/test/resources/getLikesResponse.json");
+    Path          jsonFilePath = Path.of("src/test/resources/likesResponse.json");
     String        jsonContent  = Files.readString(jsonFilePath);
     LikesResponse response     = objectMapper.readValue(jsonContent, LikesResponse.class);
     assertNotNull(response, "Response object should not be null");
@@ -40,7 +41,7 @@ public class DeserializationTest {
 
   @Test
   public void testDeserializeGetFollows() throws IOException {
-    Path            jsonFilePath = Path.of("src/test/resources/getFollows.json");
+    Path            jsonFilePath = Path.of("src/test/resources/follows.json");
     String          jsonContent  = Files.readString(jsonFilePath);
     FollowsResponse response     = objectMapper.readValue(jsonContent, FollowsResponse.class);
     assertNotNull(response);
@@ -50,7 +51,7 @@ public class DeserializationTest {
 
   @Test
   public void testDeserializeGetUserLists() throws IOException {
-    Path              jsonFilePath = Path.of("src/test/resources/getUserLists.json");
+    Path              jsonFilePath = Path.of("src/test/resources/userLists.json");
     String            jsonContent  = Files.readString(jsonFilePath);
     UserListsResponse response     = objectMapper.readValue(jsonContent, UserListsResponse.class);
     assertNotNull(response);
@@ -62,7 +63,7 @@ public class DeserializationTest {
 
   @Test
   public void testDeserializeGetUserList() throws IOException {
-    Path             jsonFilePath = Path.of("src/test/resources/getUserList.json");
+    Path             jsonFilePath = Path.of("src/test/resources/userList.json");
     String           jsonContent  = Files.readString(jsonFilePath);
     UserListResponse userList     = objectMapper.readValue(jsonContent, UserListResponse.class);
     assertNotNull(userList.getList());
@@ -73,7 +74,7 @@ public class DeserializationTest {
 
   @Test
   public void testDeserializeGetListNostifications() throws IOException {
-    Path                      jsonFilePath      = Path.of("src/test/resources/getListNotifications.json");
+    Path                      jsonFilePath      = Path.of("src/test/resources/listNotifications.json");
     String                    jsonContent       = Files.readString(jsonFilePath);
     ListNotificationsResponse listNotifications = objectMapper.readValue(jsonContent, ListNotificationsResponse.class);
     assertNotNull(listNotifications);
@@ -81,6 +82,18 @@ public class DeserializationTest {
     assertEquals(50, listNotifications.getNotifications().size());
     assertNotNull(listNotifications.getNotifications().getFirst().getAuthor().getHandle());
     assertEquals(ReasonEnum.MENTION, listNotifications.getNotifications().getFirst().getReason());
+  }
+
+  @Test
+  public void testDeserializeGetPostThread() throws IOException {
+    Path               jsonFilePath = Path.of("src/test/resources/postThreadResponse.json");
+    String             jsonContent  = Files.readString(jsonFilePath);
+    PostThreadResponse postThread   = objectMapper.readValue(jsonContent, PostThreadResponse.class);
+    assertNotNull(postThread);
+    assertNotNull(postThread.getThread());
+    assertNotNull(postThread.getThread().getPost().getAuthor().getHandle());
+    assertNotNull(postThread.getThread().getPost().getRecord().getText());
+    assertEquals(8, postThread.getThread().getReplies().size());
   }
 
 }

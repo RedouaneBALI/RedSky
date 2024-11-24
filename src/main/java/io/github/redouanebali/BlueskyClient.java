@@ -3,6 +3,7 @@ package io.github.redouanebali;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.redouanebali.dto.Actor;
+import io.github.redouanebali.dto.AtUri;
 import io.github.redouanebali.dto.follow.FollowersResponse;
 import io.github.redouanebali.dto.follow.FollowsResponse;
 import io.github.redouanebali.dto.like.LikesResponse;
@@ -19,6 +20,8 @@ import io.github.redouanebali.dto.record.CreateRecordRequest;
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordRequest;
 import io.github.redouanebali.dto.record.DeleteRecordResponse;
+import io.github.redouanebali.dto.record.PostThreadResponse;
+import io.github.redouanebali.dto.record.ReasonEnum;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,7 @@ public class BlueskyClient implements IBlueskyClient {
   private final        ObjectMapper objectMapper;
   private              String       accessToken;
   private              String       did;
+  private              String       identifier;
 
   public BlueskyClient() {
     this.client       = SSLUtils.getUnsafeOkHttpClient(); // to be replaced by new OkHttpClient(); out of local scope
@@ -90,6 +94,7 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   public void login(String identifier, String password) throws IOException {
+    this.identifier = identifier;
     LoginRequest loginRequest = new LoginRequest(identifier, password);
 
     RequestBody body = RequestBody.create(
@@ -355,5 +360,46 @@ public class BlueskyClient implements IBlueskyClient {
       LOGGER.info("calling with cursor = " + cursor);
     } while (cursor != null);
     return result;
+  }
+
+  @Override
+  public PostThreadResponse getPostThread(String recordUri) throws IOException {
+    String url = BASE_URL + "app.bsky.feed.getPostThread?uri=" + recordUri;
+
+    Request request = getGetRequest(url);
+
+    try (Response response = client.newCall(request).execute()) {
+      if (!response.isSuccessful() || response.body() == null) {
+        throw new IOException("Failed to fetch post thread: " + response.body().string());
+      }
+
+      String responseBody = response.body().string();
+      return objectMapper.readValue(responseBody, PostThreadResponse.class);
+    }
+  }
+
+  public List<Notification> getUnansweredNotifications(List<Notification> notifications) throws IOException {
+    List<Notification> unansweredNotifications = new ArrayList<>();
+    for (Notification notification : notifications) {
+      if (notification.getReason() == ReasonEnum.MENTION || notification.getReason() == ReasonEnum.REPLY) {
+        AtUri              recordUri   = notification.getUri();
+        PostThreadResponse thread      = getPostThread(recordUri.toString());
+        boolean            hasResponse = isUserInReplies(thread, identifier);
+        if (!hasResponse) {
+          unansweredNotifications.add(notification);
+        }
+      }
+    }
+    return unansweredNotifications;
+  }
+
+  private boolean isUserInReplies(PostThreadResponse threadResponse, String userHandle) {
+    for (PostThreadResponse.Thread thread : threadResponse.getThread().getReplies()) {
+
+      if (userHandle.equals(thread.getPost().getAuthor().getHandle())) {
+        return true;
+      }
+    }
+    return false;
   }
 }
