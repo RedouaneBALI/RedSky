@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.redouanebali.dto.Actor;
-import io.github.redouanebali.dto.follow.GetFollowsResponse;
-import io.github.redouanebali.dto.like.GetLikesResponse;
-import io.github.redouanebali.dto.lists.GetUserListResponse;
-import io.github.redouanebali.dto.lists.GetUserListsResponse;
+import io.github.redouanebali.dto.follow.FollowsResponse;
+import io.github.redouanebali.dto.like.LikesResponse;
 import io.github.redouanebali.dto.lists.UserList;
+import io.github.redouanebali.dto.lists.UserListResponse;
+import io.github.redouanebali.dto.lists.UserListsResponse;
+import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
+import io.github.redouanebali.dto.record.ReasonEnum;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,24 +25,24 @@ public class DeserializationTest {
 
   @Test
   void testDeserializeGetLikesResponse() throws IOException {
-    Path             jsonFilePath = Path.of("src/test/resources/getLikesResponse.json");
-    String           jsonContent  = Files.readString(jsonFilePath);
-    GetLikesResponse response     = objectMapper.readValue(jsonContent, GetLikesResponse.class);
+    Path          jsonFilePath = Path.of("src/test/resources/getLikesResponse.json");
+    String        jsonContent  = Files.readString(jsonFilePath);
+    LikesResponse response     = objectMapper.readValue(jsonContent, LikesResponse.class);
     assertNotNull(response, "Response object should not be null");
     assertNotNull(response.getUri(), "URI should not be null");
     assertNotNull(response.getLikes(), "Likes list should not be null");
     assertFalse(response.getLikes().isEmpty(), "Likes list should not be empty");
     assertEquals(16, response.getLikes().size());
-    GetLikesResponse.Like firstLike = response.getLikes().getFirst();
+    LikesResponse.Like firstLike = response.getLikes().getFirst();
     assertNotNull(firstLike.getActor(), "Actor should not be null");
     assertEquals("xouyou.bsky.social", firstLike.getActor().getHandle(), "Handle should match expected value");
   }
 
   @Test
   public void testDeserializeGetFollows() throws IOException {
-    Path               jsonFilePath = Path.of("src/test/resources/getFollows.json");
-    String             jsonContent  = Files.readString(jsonFilePath);
-    GetFollowsResponse response     = objectMapper.readValue(jsonContent, GetFollowsResponse.class);
+    Path            jsonFilePath = Path.of("src/test/resources/getFollows.json");
+    String          jsonContent  = Files.readString(jsonFilePath);
+    FollowsResponse response     = objectMapper.readValue(jsonContent, FollowsResponse.class);
     assertNotNull(response);
     assertEquals("3kbxxx7wual2f", response.getCursor());
     assertEquals(47, response.getFollows().size());
@@ -48,9 +50,9 @@ public class DeserializationTest {
 
   @Test
   public void testDeserializeGetUserLists() throws IOException {
-    Path                 jsonFilePath = Path.of("src/test/resources/getUserLists.json");
-    String               jsonContent  = Files.readString(jsonFilePath);
-    GetUserListsResponse response     = objectMapper.readValue(jsonContent, GetUserListsResponse.class);
+    Path              jsonFilePath = Path.of("src/test/resources/getUserLists.json");
+    String            jsonContent  = Files.readString(jsonFilePath);
+    UserListsResponse response     = objectMapper.readValue(jsonContent, UserListsResponse.class);
     assertNotNull(response);
     assertEquals(2, response.getLists().size());
     UserList userList = response.getLists().getLast();
@@ -60,13 +62,25 @@ public class DeserializationTest {
 
   @Test
   public void testDeserializeGetUserList() throws IOException {
-    Path                jsonFilePath = Path.of("src/test/resources/getUserList.json");
-    String              jsonContent  = Files.readString(jsonFilePath);
-    GetUserListResponse userList     = objectMapper.readValue(jsonContent, GetUserListResponse.class);
+    Path             jsonFilePath = Path.of("src/test/resources/getUserList.json");
+    String           jsonContent  = Files.readString(jsonFilePath);
+    UserListResponse userList     = objectMapper.readValue(jsonContent, UserListResponse.class);
     assertNotNull(userList.getList());
     assertNotNull(userList.getItems());
     Actor actor = userList.getItems().getFirst().getSubject();
     assertNotNull(actor.getHandle());
+  }
+
+  @Test
+  public void testDeserializeGetListNostifications() throws IOException {
+    Path                      jsonFilePath      = Path.of("src/test/resources/getListNotifications.json");
+    String                    jsonContent       = Files.readString(jsonFilePath);
+    ListNotificationsResponse listNotifications = objectMapper.readValue(jsonContent, ListNotificationsResponse.class);
+    assertNotNull(listNotifications);
+    assertNotNull(listNotifications.getCursor());
+    assertEquals(50, listNotifications.getNotifications().size());
+    assertNotNull(listNotifications.getNotifications().getFirst().getAuthor().getHandle());
+    assertEquals(ReasonEnum.MENTION, listNotifications.getNotifications().getFirst().getReason());
   }
 
 }

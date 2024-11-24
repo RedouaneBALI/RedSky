@@ -1,4 +1,4 @@
-package io.github.redouanebali.dto.post;
+package io.github.redouanebali.dto.record;
 
 import io.github.redouanebali.dto.AtUri;
 import lombok.Data;

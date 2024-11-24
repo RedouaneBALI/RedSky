@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class GetUserListResponse {
+public class UserListResponse {
 
   UserList       list;
   List<ListItem> items;

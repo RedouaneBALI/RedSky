@@ -39,7 +39,7 @@ public class SerializationTest {
   public void writeFollowersIntoJsonFile() throws IOException {
     List<String> actors = List.of("redtheone.bsky.social");
     for (String actor : actors) {
-      List<Actor>  followers = BS_CLIENT.getFollowers(actor);
+      List<Actor>  followers = BS_CLIENT.getAllFollowers(actor);
       List<String> dids      = followers.stream().map(Actor::getDid).toList();
       String       filePath  = "src/test/resources/followers/" + actor + ".json";
       mapper.writeValue(new File(filePath), dids);

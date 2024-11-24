@@ -6,14 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.github.redouanebali.dto.Actor;
-import io.github.redouanebali.dto.follow.GetFollowersResponse;
-import io.github.redouanebali.dto.follow.GetFollowsResponse;
-import io.github.redouanebali.dto.like.GetLikesResponse;
-import io.github.redouanebali.dto.like.GetLikesResponse.Like;
-import io.github.redouanebali.dto.lists.GetUserListsResponse;
+import io.github.redouanebali.dto.follow.FollowersResponse;
+import io.github.redouanebali.dto.follow.FollowsResponse;
+import io.github.redouanebali.dto.like.LikesResponse;
+import io.github.redouanebali.dto.like.LikesResponse.Like;
 import io.github.redouanebali.dto.lists.UserList;
-import io.github.redouanebali.dto.post.CreateRecordResponse;
-import io.github.redouanebali.dto.post.DeleteRecordResponse;
+import io.github.redouanebali.dto.lists.UserListsResponse;
+import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
+import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notification;
+import io.github.redouanebali.dto.record.CreateRecordResponse;
+import io.github.redouanebali.dto.record.DeleteRecordResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +50,7 @@ public class IntegrationTest {
   }
 
   @Test
-  @Disabled
+  @Disabled("Just for personal use")
   public void createRecordTest() throws IOException {
     CreateRecordResponse createResponse = BS_CLIENT.createRecord("Et hop, je viens d'apprendre à pouvoir supprimer mes posts ! \uD83D\uDE0F ✅");
     assertNotNull(createResponse.getUri());
@@ -72,14 +74,14 @@ public class IntegrationTest {
   }
 
   @Test
-  @Disabled
+  @Disabled("Just for personal use")
   public void getAtUriFromUrl() throws IOException {
     LOGGER.info(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h"));
   }
 
   @Test
   public void getLikes1stPage() throws IOException {
-    GetLikesResponse response = BS_CLIENT.getLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25", null);
+    LikesResponse response = BS_CLIENT.getLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25", null);
     assertNotNull(response);
     assertFalse(response.getLikes().isEmpty());
     assertTrue(response.getLikes().size() > 15);
@@ -87,14 +89,14 @@ public class IntegrationTest {
 
   @Test
   public void getAllLikes() throws IOException {
-    List<Like> response = BS_CLIENT.getLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25");
+    List<Like> response = BS_CLIENT.getAllLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25");
     assertNotNull(response);
     assertTrue(response.size() > 150);
   }
 
   @Test
   public void getFollows1stPage() throws IOException {
-    GetFollowsResponse followsResponse = BS_CLIENT.getFollows("redtheone.bsky.social", null);
+    FollowsResponse followsResponse = BS_CLIENT.getFollows("redtheone.bsky.social", null);
     assertNotNull(followsResponse);
     assertFalse(followsResponse.getFollows().isEmpty());
     assertTrue(followsResponse.getFollows().size() > 40);
@@ -103,14 +105,14 @@ public class IntegrationTest {
 
   @Test
   public void getAllFollows() throws IOException {
-    List<Actor> follows = BS_CLIENT.getFollows("redtheone.bsky.social");
+    List<Actor> follows = BS_CLIENT.getAllFollows("redtheone.bsky.social");
     assertTrue(follows.size() > 70);
     follows.stream().map(Actor::getHandle).toList().forEach(LOGGER::debug);
   }
 
   @Test
   public void getFollowers1stPage() throws IOException {
-    GetFollowersResponse response = BS_CLIENT.getFollowers("redtheone.bsky.social", null);
+    FollowersResponse response = BS_CLIENT.getFollowers("redtheone.bsky.social", null);
     assertNotNull(response);
     assertFalse(response.getFollowers().isEmpty());
     assertTrue(response.getFollowers().size() > 40);
@@ -121,14 +123,13 @@ public class IntegrationTest {
 
   @Test
   public void getAllFollowers() throws IOException {
-    List<Actor> response = BS_CLIENT.getFollowers("redtheone.bsky.social");
+    List<Actor> response = BS_CLIENT.getAllFollowers("redtheone.bsky.social");
     assertTrue(response.size() > 150);
-    // response.stream().map(Actor::getHandle).toList().forEach(LOGGER::debug);
   }
 
   @Test
   public void getUserLists1stPage() throws IOException {
-    GetUserListsResponse response = BS_CLIENT.getUserLists("redtheone.bsky.social", null);
+    UserListsResponse response = BS_CLIENT.getUserLists("redtheone.bsky.social", null);
     assertNotNull(response);
     assertFalse(response.getLists().isEmpty());
     assertNotNull(response.getLists().getFirst().getUri());
@@ -137,15 +138,31 @@ public class IntegrationTest {
 
   @Test
   public void getAllUserLists() throws IOException {
-    List<UserList> response = BS_CLIENT.getUserLists("redtheone.bsky.social");
+    List<UserList> response = BS_CLIENT.getAllUserLists("redtheone.bsky.social");
     assertTrue(response.size() > 1);
     response.stream().map(UserList::getName).toList().forEach(LOGGER::debug);
   }
 
   @Test
   public void getUserList() throws IOException {
-    List<Actor> response = BS_CLIENT.getUserList("at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z");
+    List<Actor> response = BS_CLIENT.getAllUserList("at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z");
     assertNotNull(response);
     response.stream().map(Actor::getHandle).forEach(LOGGER::debug);
+  }
+
+  @Test
+  public void getListNotifications() throws IOException {
+    ListNotificationsResponse response = BS_CLIENT.getListNotifications(null);
+    assertNotNull(response);
+    assertFalse(response.getNotifications().isEmpty());
+  }
+
+  @Test
+  public void getAllListNotifications() throws IOException {
+    List<Notification> notifications = BS_CLIENT.getAllListNotifications();
+    assertFalse(notifications.isEmpty());
+    assertTrue(notifications.size() > 50);
+    assertNotNull(notifications.getFirst().getReason());
+    assertNotNull(notifications.getFirst().getAuthor());
   }
 }

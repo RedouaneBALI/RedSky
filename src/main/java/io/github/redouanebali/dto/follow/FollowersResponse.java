@@ -5,9 +5,9 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class GetFollowsResponse {
+public class FollowersResponse {
 
   private Actor       subject;
-  private List<Actor> follows;
+  private List<Actor> followers;
   private String      cursor;
 }

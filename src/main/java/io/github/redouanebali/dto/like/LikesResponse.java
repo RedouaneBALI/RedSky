@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class GetLikesResponse {
+public class LikesResponse {
 
   private String     uri;
   private List<Like> likes;
