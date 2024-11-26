@@ -81,6 +81,7 @@ public class DeserializationTest {
     assertNotNull(listNotifications.getCursor());
     assertEquals(50, listNotifications.getNotifications().size());
     assertNotNull(listNotifications.getNotifications().getFirst().getAuthor().getHandle());
+    assertNotNull(listNotifications.getNotifications().getFirst().getRecord().getReply());
     assertEquals(ReasonEnum.MENTION, listNotifications.getNotifications().getFirst().getReason());
   }
 

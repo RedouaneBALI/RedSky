@@ -182,8 +182,8 @@ public class BlueskyClient implements IBlueskyClient {
 
   }
 
-  public LikesResponse getLikes(String recordUrl, String cursor) throws IOException {
-    String url = BASE_URL + "app.bsky.feed.getLikes?uri=" + getAtUriFromUrl(recordUrl);
+  public LikesResponse getLikes(String recordUri, String cursor) throws IOException {
+    String url = BASE_URL + "app.bsky.feed.getLikes?uri=" + recordUri;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
@@ -201,11 +201,11 @@ public class BlueskyClient implements IBlueskyClient {
     }
   }
 
-  public List<Like> getAllLikes(String recordUrl) throws IOException {
+  public List<Like> getAllLikes(String recordUri) throws IOException {
     List<Like> result = new ArrayList<>();
     String     cursor = null;
     do {
-      LikesResponse response = getLikes(recordUrl, cursor);
+      LikesResponse response = getLikes(recordUri, cursor);
       result.addAll(response.getLikes());
       cursor = response.getCursor();
     } while (cursor != null);
@@ -305,7 +305,7 @@ public class BlueskyClient implements IBlueskyClient {
     return result;
   }
 
-  public UserListResponse getUserList(String listUri, String cursor) throws IOException {
+  public UserListResponse getUserListActors(String listUri, String cursor) throws IOException {
     String url = BASE_URL + "app.bsky.graph.getList?list=" + listUri;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -325,11 +325,11 @@ public class BlueskyClient implements IBlueskyClient {
     }
   }
 
-  public List<Actor> getAllUserList(String listUri) throws IOException {
+  public List<Actor> getAllUserListActors(String listUri) throws IOException {
     List<Actor> result = new ArrayList<>();
     String      cursor = null;
     do {
-      UserListResponse response = getUserList(listUri, cursor);
+      UserListResponse response = getUserListActors(listUri, cursor);
       result.addAll(response.getItems().stream().map(ListItem::getSubject).toList());
       cursor = response.getCursor();
     } while (cursor != null);
@@ -338,9 +338,9 @@ public class BlueskyClient implements IBlueskyClient {
 
   @Override
   public ListNotificationsResponse getListNotifications(final String cursor) throws IOException {
-    String url = BASE_URL + "app.bsky.notification.listNotifications";
+    String url = BASE_URL + "app.bsky.notification.listNotifications?limit=100";
     if (cursor != null && !cursor.isEmpty()) {
-      url += "?" + CURSOR + "=" + cursor;
+      url += "&" + CURSOR + "=" + cursor;
     }
 
     Request request = getGetRequest(url);

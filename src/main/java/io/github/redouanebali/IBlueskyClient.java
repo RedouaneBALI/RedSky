@@ -31,12 +31,12 @@ public interface IBlueskyClient {
   /**
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-likes
    */
-  LikesResponse getLikes(String recordUrl, String cursor) throws IOException;
+  LikesResponse getLikes(String recordUri, String cursor) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-likes
    */
-  List<Like> getAllLikes(String recordUrl) throws IOException;
+  List<Like> getAllLikes(String recordUri) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-follows
@@ -69,14 +69,14 @@ public interface IBlueskyClient {
   List<UserList> getAllUserLists(String actorHandle) throws IOException;
 
   /**
-   * Get a specific user list. See https://docs.bsky.app/docs/api/app-bsky-graph-get-list
+   * https://docs.bsky.app/docs/api/app-bsky-graph-get-list
    */
-  UserListResponse getUserList(String listUri, String cursor) throws IOException;
+  UserListResponse getUserListActors(String listUri, String cursor) throws IOException;
 
   /**
-   * Get the list of actor of a user list. https://docs.bsky.app/docs/api/app-bsky-graph-get-list
+   * https://docs.bsky.app/docs/api/app-bsky-graph-get-list
    */
-  List<Actor> getAllUserList(String listUri) throws IOException;
+  List<Actor> getAllUserListActors(String listUri) throws IOException;
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-notification-list-notifications

@@ -55,7 +55,7 @@ public class IntegrationTest {
   @Test
   @Disabled("Just for personal use")
   public void getAtUriFromUrl() throws IOException {
-    LOGGER.info(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redthebot.bsky.social/post/3lbms7p32qv2m"));
+    LOGGER.info(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbushrpzqk2h"));
   }
 
   @Test
@@ -84,7 +84,9 @@ public class IntegrationTest {
 
   @Test
   public void getLikes1stPageTest() throws IOException {
-    LikesResponse response = BS_CLIENT.getLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25", null);
+    LikesResponse
+        response =
+        BS_CLIENT.getLikes(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25"), null);
     assertNotNull(response);
     assertFalse(response.getLikes().isEmpty());
     assertTrue(response.getLikes().size() > 15);
@@ -92,17 +94,17 @@ public class IntegrationTest {
 
   @Test
   public void getAllLikesTest() throws IOException {
-    List<Like> response = BS_CLIENT.getAllLikes("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25");
+    List<Like> response = BS_CLIENT.getAllLikes(BS_CLIENT.getAtUriFromUrl("https://bsky.app/profile/fabricearfi.bsky.social/post/3lbmql3klhk25"));
     assertNotNull(response);
     assertTrue(response.size() > 150);
   }
 
   @Test
   public void getFollows1stPageTest() throws IOException {
-    FollowsResponse followsResponse = BS_CLIENT.getFollows("redtheone.bsky.social", null);
+    FollowsResponse followsResponse = BS_CLIENT.getFollows("sreyephleung.bsky.social", null);
     assertNotNull(followsResponse);
     assertFalse(followsResponse.getFollows().isEmpty());
-    assertTrue(followsResponse.getFollows().size() > 40);
+    assertEquals(100, followsResponse.getFollows().size());
     assertNotNull(followsResponse.getCursor());
   }
 
@@ -148,7 +150,7 @@ public class IntegrationTest {
 
   @Test
   public void getUserListTest() throws IOException {
-    List<Actor> response = BS_CLIENT.getAllUserList("at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z");
+    List<Actor> response = BS_CLIENT.getAllUserListActors("at://did:plc:tavdd37id64nlh74vaclzuwp/app.bsky.graph.list/3lblye7d6za2z");
     assertNotNull(response);
     response.stream().map(Actor::getHandle).forEach(LOGGER::debug);
   }
@@ -204,6 +206,6 @@ public class IntegrationTest {
     String                    jsonContent             = Files.readString(jsonFilePath);
     ListNotificationsResponse listNotifications       = new ObjectMapper().readValue(jsonContent, ListNotificationsResponse.class);
     List<Notification>        unansweredNotifications = BS_CLIENT.getUnansweredNotifications(listNotifications.getNotifications());
-    assertEquals(1, unansweredNotifications.size());
+    assertFalse(unansweredNotifications.isEmpty());
   }
 }

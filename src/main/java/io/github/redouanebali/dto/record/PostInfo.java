@@ -1,5 +1,6 @@
 package io.github.redouanebali.dto.record;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.github.redouanebali.dto.Actor.Actor;
 import io.github.redouanebali.dto.Actor.Actor.Viewer;
 import io.github.redouanebali.dto.AtUri;
@@ -7,7 +8,8 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class Post {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PostInfo {
 
   private AtUri       uri;
   private String      cid;

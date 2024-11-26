@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecordDTO {
 
   @JsonProperty("$type")
@@ -26,6 +27,7 @@ public class RecordDTO {
   private List<String> langs;
   private String       text;
   private Actor        author;
+  private Reply        reply;
 
   public RecordDTO(String text) {
     this.text      = text;
@@ -53,6 +55,28 @@ public class RecordDTO {
 
       private Integer byteEnd;
       private Integer byteStart;
+    }
+  }
+
+  @Data
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  public static class Reply {
+
+    private Parent parent;
+    private Root   root;
+
+    @Data
+    public static class Parent {
+
+      private String cid;
+      private String uri;
+    }
+
+    @Data
+    public static class Root {
+
+      private String cid;
+      private String uri;
     }
   }
 }
