@@ -1,7 +1,7 @@
 package io.github.redouanebali;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.dto.Actor.Actor;
+import io.github.redouanebali.dto.actor.Actor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

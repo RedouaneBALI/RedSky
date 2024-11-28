@@ -1,7 +1,7 @@
 package io.github.redouanebali.dto.lists;
 
-import io.github.redouanebali.dto.Actor.Actor;
 import io.github.redouanebali.dto.AtUri;
+import io.github.redouanebali.dto.actor.Actor;
 import java.util.List;
 import lombok.Data;
 

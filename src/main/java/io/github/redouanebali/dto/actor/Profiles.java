@@ -1,4 +1,4 @@
-package io.github.redouanebali.dto.Actor;
+package io.github.redouanebali.dto.actor;
 
 import java.util.List;
 import lombok.Data;

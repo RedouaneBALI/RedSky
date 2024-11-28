@@ -1,6 +1,6 @@
 package io.github.redouanebali;
 
-import io.github.redouanebali.dto.Actor.Actor;
+import io.github.redouanebali.dto.actor.Actor;
 import io.github.redouanebali.dto.follow.FollowersResponse;
 import io.github.redouanebali.dto.follow.FollowsResponse;
 import io.github.redouanebali.dto.like.LikesResponse;

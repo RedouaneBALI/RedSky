@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.dto.Actor.Actor;
+import io.github.redouanebali.dto.actor.Actor;
 import io.github.redouanebali.dto.follow.FollowsResponse;
 import io.github.redouanebali.dto.like.LikesResponse;
 import io.github.redouanebali.dto.lists.UserList;
@@ -67,8 +67,8 @@ public class DeserializationTest {
     String           jsonContent  = Files.readString(jsonFilePath);
     UserListResponse userList     = objectMapper.readValue(jsonContent, UserListResponse.class);
     assertNotNull(userList.getList());
-    assertNotNull(userList.getItems());
-    Actor actor = userList.getItems().getFirst().getSubject();
+    assertNotNull(userList.retrieveItems());
+    Actor actor = userList.retrieveItems().getFirst().getSubject();
     assertNotNull(actor.getHandle());
   }
 

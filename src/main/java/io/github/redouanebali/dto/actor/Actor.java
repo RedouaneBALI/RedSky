@@ -1,4 +1,4 @@
-package io.github.redouanebali.dto.Actor;
+package io.github.redouanebali.dto.actor;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.github.redouanebali.dto.record.RecordDTO;

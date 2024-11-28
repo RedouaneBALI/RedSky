@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.redouanebali.dto.Actor.Actor;
+import io.github.redouanebali.dto.actor.Actor;
 import io.github.redouanebali.dto.follow.FollowersResponse;
 import io.github.redouanebali.dto.follow.FollowsResponse;
 import io.github.redouanebali.dto.like.LikesResponse;
@@ -128,7 +128,6 @@ public class IntegrationTest {
     assertTrue(response.getFollowers().size() > 40);
     assertNotNull(response.getCursor());
     response.getFollowers().stream().map(Actor::getHandle).toList().forEach(LOGGER::debug);
-
   }
 
   @Test
@@ -155,9 +154,9 @@ public class IntegrationTest {
 
   @Test
   public void getUserListTest() {
-    List<Actor> response = BS_CLIENT.getAllUserListActors("at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.list/3lbs6quzmyf26").getValue();
+    Result<List<Actor>> response = BS_CLIENT.getAllUserListActors("at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.graph.list/3lbs6quzmyf26");
     assertNotNull(response);
-    response.stream().map(Actor::getHandle).forEach(LOGGER::debug);
+    response.getValue().stream().map(Actor::getHandle).forEach(LOGGER::debug);
   }
 
   @Test

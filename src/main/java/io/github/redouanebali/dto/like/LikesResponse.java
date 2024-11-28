@@ -1,16 +1,22 @@
 package io.github.redouanebali.dto.like;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.github.redouanebali.dto.Actor.Actor;
+import io.github.redouanebali.dto.Paginated;
+import io.github.redouanebali.dto.actor.Actor;
 import java.util.List;
 import lombok.Data;
 
 @Data
-public class LikesResponse {
+public class LikesResponse implements Paginated {
 
   private String     uri;
   private List<Like> likes;
   private String     cursor;
+
+  @Override
+  public List retrieveItems() {
+    return likes;
+  }
 
   @Data
   @JsonIgnoreProperties(ignoreUnknown = true)
