@@ -13,7 +13,6 @@ import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notifi
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordResponse;
 import io.github.redouanebali.dto.record.PostThreadResponse;
-import java.io.IOException;
 import java.util.List;
 
 public interface IBlueskyClient {
@@ -21,85 +20,85 @@ public interface IBlueskyClient {
   /**
    * https://docs.bsky.app/docs/api/com-atproto-repo-create-record
    */
-  CreateRecordResponse createRecord(String text) throws IOException;
+  Result<CreateRecordResponse> createRecord(String text);
 
   /**
    * https://docs.bsky.app/docs/api/com-atproto-repo-delete-record
    */
-  DeleteRecordResponse deleteRecord(String rkey) throws IOException;
+  Result<DeleteRecordResponse> deleteRecord(String rkey);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-likes
    */
-  LikesResponse getLikes(String recordUri, String cursor) throws IOException;
+  Result<LikesResponse> getLikes(String recordUri, String cursor);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-likes
    */
-  List<Like> getAllLikes(String recordUri) throws IOException;
+  Result<List<Like>> getAllLikes(String recordUri);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-follows
    */
-  FollowsResponse getFollows(String actorHandle, String cursor) throws IOException;
+  Result<FollowsResponse> getFollows(String actorHandle, String cursor);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-follows
    */
-  List<Actor> getAllFollows(String actorHandle) throws IOException;
+  Result<List<Actor>> getAllFollows(String actorHandle);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-followers
    */
-  FollowersResponse getFollowers(String actorHandle, String cursor) throws IOException;
+  Result<FollowersResponse> getFollowers(String actorHandle, String cursor);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-followers
    */
-  List<Actor> getAllFollowers(String actorHandle) throws IOException;
+  Result<List<Actor>> getAllFollowers(String actorHandle);
 
   /**
    * Get the user lists of an actor. See https://docs.bsky.app/docs/api/app-bsky-graph-get-lists
    */
-  UserListsResponse getUserLists(String actorHandle, String cursor) throws IOException;
+  Result<UserListsResponse> getUserLists(String actorHandle, String cursor);
 
   /**
    * Get all the user lists of an actor. See https://docs.bsky.app/docs/api/app-bsky-graph-get-lists
    */
-  List<UserList> getAllUserLists(String actorHandle) throws IOException;
+  Result<List<UserList>> getAllUserLists(String actorHandle);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-list
    */
-  UserListResponse getUserListActors(String listUri, String cursor) throws IOException;
+  Result<UserListResponse> getUserListActors(String listUri, String cursor);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-graph-get-list
    */
-  List<Actor> getAllUserListActors(String listUri) throws IOException;
+  Result<List<Actor>> getAllUserListActors(String listUri);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-notification-list-notifications
    */
-  ListNotificationsResponse getListNotifications(String cursor) throws IOException;
+  Result<ListNotificationsResponse> getListNotifications(String cursor);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-notification-list-notifications
    */
-  List<Notification> getAllListNotifications() throws IOException;
+  Result<List<Notification>> getAllListNotifications();
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-post-thread
    */
-  PostThreadResponse getPostThread(String recordUri) throws IOException;
+  Result<PostThreadResponse> getPostThread(String recordUri);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-actor-get-profile
    */
-  Actor getProfile(String actorHandle) throws IOException;
+  Result<Actor> getProfile(String actorHandle);
 
   /**
    * https://docs.bsky.app/docs/api/app-bsky-actor-get-profiles
    */
-  List<Actor> getProfiles(List<String> actorHandles) throws IOException;
+  Result<List<Actor>> getProfiles(List<String> actorHandles);
 }

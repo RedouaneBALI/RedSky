@@ -59,7 +59,7 @@ public class BlueskyClient implements IBlueskyClient {
     this.objectMapper = new ObjectMapper();
   }
 
-  private Request getPostRequest(String url, RequestBody body) throws JsonProcessingException {
+  private Request getPostRequest(String url, RequestBody body) {
     LOGGER.debug("POST " + url);
 
     return new Request.Builder()
@@ -86,7 +86,7 @@ public class BlueskyClient implements IBlueskyClient {
       String handle = matcher.group(1);
       String rkey   = matcher.group(2);
 
-      String actorDid = getDidFromHandle(handle);
+      String actorDid = getDidFromHandle(handle).getValue();
 
       return "at://" + actorDid + "/app.bsky.feed.post/" + rkey;
     }
@@ -94,22 +94,29 @@ public class BlueskyClient implements IBlueskyClient {
     throw new IllegalArgumentException("URL invalide : " + url);
   }
 
-  public String getDidFromHandle(String handle) throws IOException {
+  public Result<String> getDidFromHandle(String handle) {
     Request request = new Request.Builder()
         .url("https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=" + handle)
         .build();
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful() || response.body() == null) {
-        throw new IOException("Failed to resolve handle: " + response);
+        String errorMessage = "Failed to resolve handle: " + response;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
       String   responseBody = response.body().string();
       JsonNode jsonNode     = objectMapper.readTree(responseBody);
-      return jsonNode.get("did").asText();
+      return Result.success(jsonNode.get("did").asText());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while resolving handle: " + handle;
+      LOGGER.error(errorMessage);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public void login(String identifier, String password) throws IOException {
+
+  public Result<Void> login(String identifier, String password) throws JsonProcessingException {
     this.identifier = identifier;
     LoginRequest loginRequest = new LoginRequest(identifier, password);
 
@@ -125,7 +132,9 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Login failed: " + response);
+        String errorMessage = "Login failed: " + response;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
       LoginResponse loginResponse = objectMapper.readValue(
@@ -134,55 +143,114 @@ public class BlueskyClient implements IBlueskyClient {
       );
       this.accessToken = loginResponse.getAccessJwt();
       this.did         = loginResponse.getDid();
+      return Result.success(null);
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred during login for identifier: " + identifier;
+      LOGGER.error(errorMessage);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public CreateRecordResponse createRecord(String text) throws IOException {
-    CreateRecordRequest createRecordRequest = new CreateRecordRequest(text, did);
 
-    RequestBody body = RequestBody.create(
-        objectMapper.writeValueAsString(createRecordRequest),
-        MediaType.parse(APPLICATION_JSON)
-    );
+  public Result<CreateRecordResponse> createRecord(String text) {
+    CreateRecordRequest createRecordRequest;
+    try {
+      createRecordRequest = new CreateRecordRequest(text, did);
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while creating request object for record: " + text;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    }
+
+    RequestBody body;
+    try {
+      body = RequestBody.create(
+          objectMapper.writeValueAsString(createRecordRequest),
+          MediaType.parse(APPLICATION_JSON)
+      );
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while creating request body: " + text;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    }
 
     Request request = getPostRequest(BASE_URL + "com.atproto.repo.createRecord", body);
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Post failed: " + response.body().string());
+        String errorMessage = "Post failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException("empty body");
+        String errorMessage = "empty body";
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
-      String responseBody = response.body().string();
-
-      return objectMapper.readValue(responseBody, CreateRecordResponse.class);
+      String               responseBody         = response.body().string();
+      CreateRecordResponse createRecordResponse = objectMapper.readValue(responseBody, CreateRecordResponse.class);
+      return Result.success(createRecordResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while creating record: " + text;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while creating record: " + text;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
-
   }
 
-  public DeleteRecordResponse deleteRecord(String rkey) throws IOException {
-    DeleteRecordRequest deleteRecordRequest = new DeleteRecordRequest(did, rkey);
 
-    RequestBody body = RequestBody.create(
-        objectMapper.writeValueAsString(deleteRecordRequest),
-        MediaType.parse(APPLICATION_JSON)
-    );
+  public Result<DeleteRecordResponse> deleteRecord(String rkey) {
+    DeleteRecordRequest deleteRecordRequest;
+    try {
+      deleteRecordRequest = new DeleteRecordRequest(did, rkey);
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while creating request object for record: " + rkey;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    }
+
+    RequestBody body;
+    try {
+      body = RequestBody.create(
+          objectMapper.writeValueAsString(deleteRecordRequest),
+          MediaType.parse(APPLICATION_JSON)
+      );
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while creating request body: " + rkey;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    }
 
     Request request = getPostRequest(BASE_URL + "com.atproto.repo.deleteRecord", body);
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Post failed: " + response.body().string());
+        String errorMessage = "Post failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException("empty body");
+        String errorMessage = "empty body";
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, DeleteRecordResponse.class);
+      String               responseBody         = response.body().string();
+      DeleteRecordResponse deleteRecordResponse = objectMapper.readValue(responseBody, DeleteRecordResponse.class);
+      return Result.success(deleteRecordResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while deleting record: " + rkey;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while deleting record: " + rkey;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
-
   }
 
-  public LikesResponse getLikes(String recordUri, String cursor) throws IOException {
+
+  public Result<LikesResponse> getLikes(String recordUri, String cursor) {
     String url = BASE_URL + "app.bsky.feed.getLikes?uri=" + recordUri;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -191,28 +259,52 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get likes failed: " + response.body().string());
+        String errorMessage = "Get likes failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException(EMPTY_BODY);
+        String errorMessage = EMPTY_BODY;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, LikesResponse.class);
+      String        responseBody  = response.body().string();
+      LikesResponse likesResponse = objectMapper.readValue(responseBody, LikesResponse.class);
+      return Result.success(likesResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while getting likes for URI: " + recordUri;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while getting likes for URI: " + recordUri;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public List<Like> getAllLikes(String recordUri) throws IOException {
+
+  public Result<List<Like>> getAllLikes(String recordUri) {
     List<Like> result = new ArrayList<>();
     String     cursor = null;
+
     do {
-      LikesResponse response = getLikes(recordUri, cursor);
-      result.addAll(response.getLikes());
-      cursor = response.getCursor();
+      Result<LikesResponse> likesResponseResult = getLikes(recordUri, cursor);
+      if (likesResponseResult.isSuccess()) {
+        LikesResponse likesResponse = likesResponseResult.getValue();
+        result.addAll(likesResponse.getLikes());
+        cursor = likesResponse.getCursor();
+      } else {
+        String errorMessage = "Failed to get all likes for URI: " + recordUri;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage + ": " + likesResponseResult.getError());
+      }
     } while (cursor != null);
-    return result;
+
+    return Result.success(result);
   }
 
-  public FollowsResponse getFollows(String actorId, String cursor) throws IOException {
+
+  public Result<FollowsResponse> getFollows(String actorId, String cursor) {
     String url = BASE_URL + "app.bsky.graph.getFollows?limit=100&actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -222,28 +314,52 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get follows failed: " + response.body().string());
+        String errorMessage = "Get follows failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException(EMPTY_BODY);
+        String errorMessage = EMPTY_BODY;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, FollowsResponse.class);
+      String          responseBody    = response.body().string();
+      FollowsResponse followsResponse = objectMapper.readValue(responseBody, FollowsResponse.class);
+      return Result.success(followsResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while getting follows for actor ID: " + actorId;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while getting follows for actor ID: " + actorId;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public List<Actor> getAllFollows(String actorId) throws IOException {
+
+  public Result<List<Actor>> getAllFollows(String actorId) {
     List<Actor> result = new ArrayList<>();
     String      cursor = null;
+
     do {
-      FollowsResponse response = getFollows(actorId, cursor);
-      result.addAll(response.getFollows());
-      cursor = response.getCursor();
+      Result<FollowsResponse> followsResponseResult = getFollows(actorId, cursor);
+      if (followsResponseResult.isSuccess()) {
+        FollowsResponse followsResponse = followsResponseResult.getValue();
+        result.addAll(followsResponse.getFollows());
+        cursor = followsResponse.getCursor();
+      } else {
+        String errorMessage = "Failed to get all follows for actor ID: " + actorId;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage + ": " + followsResponseResult.getError());
+      }
     } while (cursor != null);
-    return result;
+
+    return Result.success(result);
   }
 
-  public FollowersResponse getFollowers(String actorId, String cursor) throws IOException {
+
+  public Result<FollowersResponse> getFollowers(String actorId, String cursor) {
     String url = BASE_URL + "app.bsky.graph.getFollowers?limit=100&actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -253,28 +369,52 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get followers failed: " + response.body().string());
+        String errorMessage = "Get followers failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException(EMPTY_BODY);
+        String errorMessage = EMPTY_BODY;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, FollowersResponse.class);
+      String            responseBody      = response.body().string();
+      FollowersResponse followersResponse = objectMapper.readValue(responseBody, FollowersResponse.class);
+      return Result.success(followersResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while getting followers for actor ID: " + actorId;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while getting followers for actor ID: " + actorId;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public List<Actor> getAllFollowers(String actorId) throws IOException {
+
+  public Result<List<Actor>> getAllFollowers(String actorId) {
     List<Actor> result = new ArrayList<>();
     String      cursor = null;
+
     do {
-      FollowersResponse response = getFollowers(actorId, cursor);
-      result.addAll(response.getFollowers());
-      cursor = response.getCursor();
+      Result<FollowersResponse> followersResponseResult = getFollowers(actorId, cursor);
+      if (followersResponseResult.isSuccess()) {
+        FollowersResponse followersResponse = followersResponseResult.getValue();
+        result.addAll(followersResponse.getFollowers());
+        cursor = followersResponse.getCursor();
+      } else {
+        String errorMessage = "Failed to get all followers for actor ID: " + actorId;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage + ": " + followersResponseResult.getError());
+      }
     } while (cursor != null);
-    return result;
+
+    return Result.success(result);
   }
 
-  public UserListsResponse getUserLists(String actorId, String cursor) throws IOException {
+
+  public Result<UserListsResponse> getUserLists(String actorId, String cursor) {
     String url = BASE_URL + "app.bsky.graph.getLists?actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -284,28 +424,52 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get user lists failed: " + response.body().string());
+        String errorMessage = "Get user lists failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException(EMPTY_BODY);
+        String errorMessage = EMPTY_BODY;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, UserListsResponse.class);
+      String            responseBody      = response.body().string();
+      UserListsResponse userListsResponse = objectMapper.readValue(responseBody, UserListsResponse.class);
+      return Result.success(userListsResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while getting user lists for actor ID: " + actorId;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while getting user lists for actor ID: " + actorId;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public List<UserList> getAllUserLists(String actorId) throws IOException {
+
+  public Result<List<UserList>> getAllUserLists(String actorId) {
     List<UserList> result = new ArrayList<>();
     String         cursor = null;
+
     do {
-      UserListsResponse response = getUserLists(actorId, cursor);
-      result.addAll(response.getLists());
-      cursor = response.getCursor();
+      Result<UserListsResponse> userListsResponseResult = getUserLists(actorId, cursor);
+      if (userListsResponseResult.isSuccess()) {
+        UserListsResponse userListsResponse = userListsResponseResult.getValue();
+        result.addAll(userListsResponse.getLists());
+        cursor = userListsResponse.getCursor();
+      } else {
+        String errorMessage = "Failed to get all user lists for actor ID: " + actorId;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage + ": " + userListsResponseResult.getError());
+      }
     } while (cursor != null);
-    return result;
+
+    return Result.success(result);
   }
 
-  public UserListResponse getUserListActors(String listUri, String cursor) throws IOException {
+
+  public Result<UserListResponse> getUserListActors(String listUri, String cursor) {
     String url = BASE_URL + "app.bsky.graph.getList?list=" + listUri;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -315,29 +479,53 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get user list failed: " + response.body().string());
+        String errorMessage = "Get user list failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException(EMPTY_BODY);
+        String errorMessage = EMPTY_BODY;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, UserListResponse.class);
+      String           responseBody     = response.body().string();
+      UserListResponse userListResponse = objectMapper.readValue(responseBody, UserListResponse.class);
+      return Result.success(userListResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while getting user list actors for list URI: " + listUri;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while getting user list actors for list URI: " + listUri;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  public List<Actor> getAllUserListActors(String listUri) throws IOException {
+
+  public Result<List<Actor>> getAllUserListActors(String listUri) {
     List<Actor> result = new ArrayList<>();
     String      cursor = null;
+
     do {
-      UserListResponse response = getUserListActors(listUri, cursor);
-      result.addAll(response.getItems().stream().map(ListItem::getSubject).toList());
-      cursor = response.getCursor();
+      Result<UserListResponse> userListResponseResult = getUserListActors(listUri, cursor);
+      if (userListResponseResult.isSuccess()) {
+        UserListResponse userListResponse = userListResponseResult.getValue();
+        result.addAll(userListResponse.getItems().stream().map(ListItem::getSubject).toList());
+        cursor = userListResponse.getCursor();
+      } else {
+        String errorMessage = "Failed to get all user list actors for list URI: " + listUri;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage + ": " + userListResponseResult.getError());
+      }
     } while (cursor != null);
-    return result;
+
+    return Result.success(result);
   }
 
+
   @Override
-  public ListNotificationsResponse getListNotifications(final String cursor) throws IOException {
+  public Result<ListNotificationsResponse> getListNotifications(final String cursor) {
     String url = BASE_URL + "app.bsky.notification.listNotifications?limit=100";
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
@@ -347,64 +535,114 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful()) {
-        throw new IOException("Get list notifications failed: " + response.body().string());
+        String errorMessage = "Get list notifications failed: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       } else if (response.body() == null) {
-        throw new IOException(EMPTY_BODY);
+        String errorMessage = EMPTY_BODY;
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, ListNotificationsResponse.class);
+      String                    responseBody              = response.body().string();
+      ListNotificationsResponse listNotificationsResponse = objectMapper.readValue(responseBody, ListNotificationsResponse.class);
+      return Result.success(listNotificationsResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while getting list notifications";
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while getting list notifications";
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
-  @Override
-  public List<Notification> getAllListNotifications() throws IOException {
-    List<Notification> result = new ArrayList<>();
-    String             cursor = null;
-    do {
-      ListNotificationsResponse response = getListNotifications(cursor);
-      result.addAll(response.getNotifications());
-      cursor = response.getCursor();
-      LOGGER.info("calling with cursor = " + cursor);
-    } while (cursor != null);
-    return result;
-  }
 
   @Override
-  public PostThreadResponse getPostThread(String recordUri) throws IOException {
+  public Result<List<Notification>> getAllListNotifications() {
+    List<Notification> result = new ArrayList<>();
+    String             cursor = null;
+
+    do {
+      Result<ListNotificationsResponse> listNotificationsResponseResult = getListNotifications(cursor);
+      if (listNotificationsResponseResult.isSuccess()) {
+        ListNotificationsResponse listNotificationsResponse = listNotificationsResponseResult.getValue();
+        result.addAll(listNotificationsResponse.getNotifications());
+        cursor = listNotificationsResponse.getCursor();
+        LOGGER.info("calling with cursor = " + cursor);
+      } else {
+        String errorMessage = "Failed to get all list notifications";
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage + ": " + listNotificationsResponseResult.getError());
+      }
+    } while (cursor != null);
+
+    return Result.success(result);
+  }
+
+
+  @Override
+  public Result<PostThreadResponse> getPostThread(String recordUri) {
     String url = BASE_URL + "app.bsky.feed.getPostThread?uri=" + recordUri;
 
     Request request = getGetRequest(url);
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful() || response.body() == null) {
-        throw new IOException("Failed to fetch post thread: " + response.body().string());
+        String errorMessage = "Failed to fetch post thread: " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
 
-      String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, PostThreadResponse.class);
+      String             responseBody       = response.body().string();
+      PostThreadResponse postThreadResponse = objectMapper.readValue(responseBody, PostThreadResponse.class);
+      return Result.success(postThreadResponse);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while fetching post thread for URI: " + recordUri;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while fetching post thread for URI: " + recordUri;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
+
   @Override
-  public Actor getProfile(final String actorHandle) throws IOException {
+  public Result<Actor> getProfile(final String actorHandle) {
     String url = BASE_URL + "app.bsky.actor.getProfile?actor=" + actorHandle;
 
     Request request = getGetRequest(url);
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful() || response.body() == null) {
-        throw new IOException("Failed to fetch profile : " + response.body().string());
+        String errorMessage = "Failed to fetch profile : " + response.body().string();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
       String responseBody = response.body().string();
-      return objectMapper.readValue(responseBody, Actor.class);
+      Actor  actorProfile = objectMapper.readValue(responseBody, Actor.class);
+      return Result.success(actorProfile);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while fetching profile for actor handle: " + actorHandle;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while fetching profile for actor handle: " + actorHandle;
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
 
+
   @Override
-  public List<Actor> getProfiles(final List<String> actorHandles) throws IOException {
+  public Result<List<Actor>> getProfiles(final List<String> actorHandles) {
     if (actorHandles == null || actorHandles.isEmpty()) {
-      throw new IllegalArgumentException("The list of actor handles cannot be null or empty.");
+      String errorMessage = "The list of actor handles cannot be null or empty.";
+      LOGGER.error(errorMessage);
+      return Result.failure(errorMessage);
     }
 
     String handlesQuery = actorHandles.stream()
@@ -417,21 +655,32 @@ public class BlueskyClient implements IBlueskyClient {
 
     try (Response response = client.newCall(request).execute()) {
       if (!response.isSuccessful() || response.body() == null) {
-        throw new IOException("Failed to fetch profile: " + response.message());
+        String errorMessage = "Failed to fetch profiles: " + response.message();
+        LOGGER.error(errorMessage);
+        return Result.failure(errorMessage);
       }
-      String responseBody = response.body().string();
-
-      return objectMapper.readValue(responseBody, Profiles.class).getProfiles();
+      String      responseBody = response.body().string();
+      List<Actor> profiles     = objectMapper.readValue(responseBody, Profiles.class).getProfiles();
+      return Result.success(profiles);
+    } catch (JsonProcessingException e) {
+      String errorMessage = "JSON processing exception occurred while fetching profiles";
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
+    } catch (Exception e) {
+      String errorMessage = "Exception occurred while fetching profiles";
+      LOGGER.error(errorMessage, e);
+      return Result.failure(errorMessage + ": " + e.getMessage());
     }
   }
+
 
   public List<Notification> getUnansweredNotifications(List<Notification> notifications) throws IOException {
     List<Notification> unansweredNotifications = new ArrayList<>();
     for (Notification notification : notifications) {
       if (notification.getReason() == ReasonEnum.MENTION || notification.getReason() == ReasonEnum.REPLY) {
-        AtUri              recordUri   = notification.getUri();
-        PostThreadResponse thread      = getPostThread(recordUri.toString());
-        boolean            hasResponse = isUserInReplies(thread, identifier);
+        AtUri                      recordUri   = notification.getUri();
+        Result<PostThreadResponse> thread      = getPostThread(recordUri.toString());
+        boolean                    hasResponse = isUserInReplies(thread.getValue(), identifier);
         if (!hasResponse) {
           unansweredNotifications.add(notification);
         }
@@ -441,6 +690,10 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   private boolean isUserInReplies(PostThreadResponse threadResponse, String userHandle) {
+    if (threadResponse == null || threadResponse.getThread() == null) {
+      LOGGER.error("threadResponse or thread null");
+      return false;
+    }
     for (PostThreadResponse.Thread thread : threadResponse.getThread().getReplies()) {
 
       if (userHandle.equals(thread.getPost().getAuthor().getHandle())) {

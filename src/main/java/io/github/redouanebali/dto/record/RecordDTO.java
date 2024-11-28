@@ -43,11 +43,13 @@ public class RecordDTO {
     private Index         index;
 
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Feature {
 
       @JsonProperty("$type")
       private String type;
       private String did;
+      private String uri;
     }
 
     @Data
