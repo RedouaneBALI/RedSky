@@ -34,6 +34,12 @@ public class RecordDTO {
     this.createdAt = Instant.now().toString();
   }
 
+  public RecordDTO(String text, String parentUri, String parentCid) {
+    this.text      = text;
+    this.createdAt = Instant.now().toString();
+    this.reply     = new Reply(parentUri, parentCid);
+  }
+
   @Data
   public static class Facet {
 
@@ -62,23 +68,35 @@ public class RecordDTO {
 
   @Data
   @JsonIgnoreProperties(ignoreUnknown = true)
+  @NoArgsConstructor
   public static class Reply {
 
     private Parent parent;
     private Root   root;
 
+    public Reply(String parentUri, String parentCid) {
+      this.parent = new Parent(parentUri, parentCid);
+    }
+
     @Data
+    @NoArgsConstructor
     public static class Parent {
 
-      private String cid;
       private String uri;
+      private String cid;
+
+      public Parent(String uri, String cid) {
+        this.uri = uri;
+        this.cid = cid;
+      }
     }
 
     @Data
     public static class Root {
 
-      private String cid;
       private String uri;
+      private String cid;
     }
   }
 }
+

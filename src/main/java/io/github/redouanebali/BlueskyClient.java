@@ -30,6 +30,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,12 +45,14 @@ import okhttp3.Response;
 @Slf4j
 public class BlueskyClient implements IBlueskyClient {
 
-  private static final String       BASE_URL         = "https://bsky.social/xrpc/";
-  private static final String       APPLICATION_JSON = "application/json";
-  private static final String       AUTHORIZATION    = "Authorization";
-  private static final String       BEARER           = "Bearer ";
-  private static final String       CURSOR           = "cursor";
-  private static final String       EMPTY_BODY       = "Empty body in response";
+  private static final String       BASE_URL             = "https://bsky.social/xrpc/";
+  private static final String       APPLICATION_JSON     = "application/json";
+  private static final String       AUTHORIZATION        = "Authorization";
+  private static final String       BEARER               = "Bearer ";
+  private static final String       CURSOR               = "cursor";
+  private static final String       EMPTY_BODY           = "Empty body in response";
+  private static final int          MAX_RETRIES          = 5;
+  private static final int          INITIAL_WAIT_TIME_MS = 1000; // 1 second
   private final        OkHttpClient client;
   private final        ObjectMapper objectMapper;
   private              String       accessToken;
@@ -62,31 +65,40 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   private <T> Result<T> executeGetRequest(String url, TypeReference<T> typeReference) {
-    Request request = getGetRequest(url);
+    Request request    = getGetRequest(url);
+    int     retryCount = 0;
+    int     waitTime   = INITIAL_WAIT_TIME_MS;
 
-    try (Response response = client.newCall(request).execute()) {
-      if (!response.isSuccessful()) {
-        String errorMessage = "Get request failed: " + response.body().string();
-        LOGGER.error(errorMessage);
-        return Result.failure(errorMessage);
-      } else if (response.body() == null) {
-        String errorMessage = EMPTY_BODY;
-        LOGGER.error(errorMessage);
-        return Result.failure(errorMessage);
+    while (retryCount < MAX_RETRIES) {
+      try (Response response = client.newCall(request).execute()) {
+        if (response.isSuccessful() && response.body() != null) {
+          String responseBody = response.body().string();
+          T      result       = objectMapper.readValue(responseBody, typeReference);
+          return Result.success(result);
+        } else if (response.code() == 429) {
+          LOGGER.warn("Rate limit exceeded, retrying after wait time: " + waitTime + " ms");
+          Thread.sleep(waitTime);
+          waitTime *= 2; // Exponential backoff
+          retryCount++;
+        } else {
+          String errorMessage = "Get request failed: " + response.body().string();
+          LOGGER.error(errorMessage);
+          return Result.failure(errorMessage);
+        }
+      } catch (JsonProcessingException e) {
+        String errorMessage = "JSON processing exception occurred while getting response from URL: " + url;
+        LOGGER.error(errorMessage, e);
+        return Result.failure(errorMessage + ": " + e.getMessage());
+      } catch (Exception e) {
+        String errorMessage = "Exception occurred while getting response from URL: " + url;
+        LOGGER.error(errorMessage, e);
+        return Result.failure(errorMessage + ": " + e.getMessage());
       }
-
-      String responseBody = response.body().string();
-      T      result       = objectMapper.readValue(responseBody, typeReference);
-      return Result.success(result);
-    } catch (JsonProcessingException e) {
-      String errorMessage = "JSON processing exception occurred while getting response from URL: " + url;
-      LOGGER.error(errorMessage, e);
-      return Result.failure(errorMessage + ": " + e.getMessage());
-    } catch (Exception e) {
-      String errorMessage = "Exception occurred while getting response from URL: " + url;
-      LOGGER.error(errorMessage, e);
-      return Result.failure(errorMessage + ": " + e.getMessage());
     }
+
+    String errorMessage = "Max retries reached for GET request to URL: " + url;
+    LOGGER.error(errorMessage);
+    return Result.failure(errorMessage);
   }
 
 
@@ -103,36 +115,44 @@ public class BlueskyClient implements IBlueskyClient {
       return Result.failure(errorMessage + ": " + e.getMessage());
     }
 
-    Request request = getPostRequest(url, body);
+    Request request    = getPostRequest(url, body);
+    int     retryCount = 0;
+    int     waitTime   = INITIAL_WAIT_TIME_MS;
 
-    try (Response response = client.newCall(request).execute()) {
-      if (!response.isSuccessful()) {
-        String errorMessage = "Post request failed: " + response.body().string();
-        LOGGER.error(errorMessage);
-        return Result.failure(errorMessage);
-      } else if (response.body() == null) {
-        String errorMessage = EMPTY_BODY;
-        LOGGER.error(errorMessage);
-        return Result.failure(errorMessage);
+    while (retryCount < MAX_RETRIES) {
+      try (Response response = client.newCall(request).execute()) {
+        if (response.isSuccessful() && response.body() != null) {
+          String responseBody = response.body().string();
+          R      result       = objectMapper.readValue(responseBody, responseType);
+          return Result.success(result);
+        } else if (response.code() == 429) {
+          LOGGER.warn("Rate limit exceeded, retrying after wait time: " + waitTime + " ms");
+          Thread.sleep(waitTime);
+          waitTime *= 2; // Exponential backoff
+          retryCount++;
+        } else {
+          String errorMessage = "Post request failed: " + response.body().string();
+          LOGGER.error(errorMessage);
+          return Result.failure(errorMessage);
+        }
+      } catch (JsonProcessingException e) {
+        String errorMessage = "JSON processing exception occurred while getting response from URL: " + url;
+        LOGGER.error(errorMessage, e);
+        return Result.failure(errorMessage + ": " + e.getMessage());
+      } catch (Exception e) {
+        String errorMessage = "Exception occurred while getting response from URL: " + url;
+        LOGGER.error(errorMessage, e);
+        return Result.failure(errorMessage + ": " + e.getMessage());
       }
-
-      String responseBody = response.body().string();
-      R      result       = objectMapper.readValue(responseBody, responseType);
-      return Result.success(result);
-    } catch (JsonProcessingException e) {
-      String errorMessage = "JSON processing exception occurred while getting response from URL: " + url;
-      LOGGER.error(errorMessage, e);
-      return Result.failure(errorMessage + ": " + e.getMessage());
-    } catch (Exception e) {
-      String errorMessage = "Exception occurred while getting response from URL: " + url;
-      LOGGER.error(errorMessage, e);
-      return Result.failure(errorMessage + ": " + e.getMessage());
     }
+
+    String errorMessage = "Max retries reached for POST request to URL: " + url;
+    LOGGER.error(errorMessage);
+    return Result.failure(errorMessage);
   }
 
   private Request getPostRequest(String url, RequestBody body) {
     LOGGER.debug("POST " + url);
-
     return new Request.Builder()
         .url(url)
         .header(AUTHORIZATION, BEARER + accessToken)
@@ -201,6 +221,8 @@ public class BlueskyClient implements IBlueskyClient {
 
 
   public Result<Void> login(String identifier, String password) {
+    Objects.requireNonNull(identifier, "login identifier cannot be null");
+    Objects.requireNonNull(password, "login password cannot be null");
     this.identifier = identifier;
     LoginRequest loginRequest = new LoginRequest(identifier, password);
     String       url          = BASE_URL + "com.atproto.server.createSession";
@@ -217,11 +239,14 @@ public class BlueskyClient implements IBlueskyClient {
     }
   }
 
-
   public Result<CreateRecordResponse> createRecord(String text) {
+    return createRecord(text, null, null);
+  }
+
+  public Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid) {
     CreateRecordRequest createRecordRequest;
     try {
-      createRecordRequest = new CreateRecordRequest(text, did);
+      createRecordRequest = new CreateRecordRequest(text, did, parentUri, parentCid);
     } catch (Exception e) {
       String errorMessage = "Exception occurred while creating request object for record: " + text;
       LOGGER.error(errorMessage, e);
@@ -317,13 +342,12 @@ public class BlueskyClient implements IBlueskyClient {
 
 
   public Result<LikesResponse> getLikes(String recordUri, String cursor) {
-    String url = BASE_URL + "app.bsky.feed.getLikes?uri=" + recordUri;
+    String url = BASE_URL + "app.bsky.feed.getLikes?limit=100&uri=" + recordUri;
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
-    TypeReference<LikesResponse> typeReference = new TypeReference<>() {
-    };
-    return executeGetRequest(url, typeReference);
+    return executeGetRequest(url, new TypeReference<>() {
+    });
   }
 
 
@@ -340,9 +364,8 @@ public class BlueskyClient implements IBlueskyClient {
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
-    TypeReference<FollowsResponse> typeReference = new TypeReference<>() {
-    };
-    return executeGetRequest(url, typeReference);
+    return executeGetRequest(url, new TypeReference<>() {
+    });
   }
 
 
@@ -359,9 +382,8 @@ public class BlueskyClient implements IBlueskyClient {
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
-    TypeReference<FollowersResponse> typeReference = new TypeReference<>() {
-    };
-    return executeGetRequest(url, typeReference);
+    return executeGetRequest(url, new TypeReference<>() {
+    });
   }
 
   public Result<List<Actor>> getAllFollowers(String actorId) {
@@ -376,9 +398,8 @@ public class BlueskyClient implements IBlueskyClient {
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
-    TypeReference<UserListsResponse> typeReference = new TypeReference<>() {
-    };
-    return executeGetRequest(url, typeReference);
+    return executeGetRequest(url, new TypeReference<>() {
+    });
   }
 
 
@@ -395,9 +416,8 @@ public class BlueskyClient implements IBlueskyClient {
     if (cursor != null && !cursor.isEmpty()) {
       url += "&" + CURSOR + "=" + cursor;
     }
-    TypeReference<UserListResponse> typeReference = new TypeReference<>() {
-    };
-    return executeGetRequest(url, typeReference);
+    return executeGetRequest(url, new TypeReference<>() {
+    });
   }
 
 
