@@ -35,6 +35,7 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -43,6 +44,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 @Slf4j
+@Getter
 public class BlueskyClient implements IBlueskyClient {
 
   private static final String       BASE_URL             = "https://bsky.social/xrpc/";
@@ -124,6 +126,7 @@ public class BlueskyClient implements IBlueskyClient {
         if (response.isSuccessful() && response.body() != null) {
           String responseBody = response.body().string();
           R      result       = objectMapper.readValue(responseBody, responseType);
+          LOGGER.debug(responseBody);
           return Result.success(result);
         } else if (response.code() == 429) {
           LOGGER.warn("Rate limit exceeded, retrying after wait time: " + waitTime + " ms");
@@ -240,13 +243,17 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   public Result<CreateRecordResponse> createRecord(String text) {
-    return createRecord(text, null, null);
+    return createRecord(text, null, null, null, null);
   }
 
-  public Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid) {
+  public Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid) {
     CreateRecordRequest createRecordRequest;
     try {
-      createRecordRequest = new CreateRecordRequest(text, did, parentUri, parentCid);
+      if (parentUri == null || parentCid == null || rootUri == null || rootCid == null) {
+        createRecordRequest = new CreateRecordRequest(text, did);
+      } else {
+        createRecordRequest = new CreateRecordRequest(text, did, parentUri, parentCid, rootUri, rootCid);
+      }
     } catch (Exception e) {
       String errorMessage = "Exception occurred while creating request object for record: " + text;
       LOGGER.error(errorMessage, e);
@@ -463,6 +470,15 @@ public class BlueskyClient implements IBlueskyClient {
     String url = BASE_URL + "app.bsky.feed.getPostThread?uri=" + recordUri;
     return executeGetRequest(url, new TypeReference<PostThreadResponse>() {
     });
+  }
+
+  public List<Actor> getPostThreadRepliyingActors(String recordUri) {
+    Result<PostThreadResponse> result = getPostThread(recordUri);
+    if (result.isFailure()) {
+      LOGGER.error("error thread not retrieved");
+      return new ArrayList<>();
+    }
+    return result.getValue().getThread().getReplies().stream().map(r -> r.getPost().getAuthor()).toList();
   }
 
 

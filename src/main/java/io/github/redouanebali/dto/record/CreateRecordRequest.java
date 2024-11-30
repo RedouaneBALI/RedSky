@@ -7,22 +7,18 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateRecordRequest {
 
-  private String    repo;
-  private String    collection = "app.bsky.feed.post";
-  private RecordDTO record;
+  private String        repo;
+  private String        collection = "app.bsky.feed.post";
+  private BlueskyRecord record;
 
   public CreateRecordRequest(String text, String did) {
     this.repo   = did;
-    this.record = new RecordDTO(text);
+    this.record = new BlueskyRecord(text);
   }
 
-  public CreateRecordRequest(String text, String did, String parentUri, String parentCid) {
-    this.repo = did;
-    if (parentUri != null && parentCid != null) {
-      this.record = new RecordDTO(text, parentUri, parentCid);
-    } else {
-      this.record = new RecordDTO(text);
-    }
+  public CreateRecordRequest(String text, String did, String parentUri, String parentCid, String rootUri, String rootCid) {
+    this.repo   = did;
+    this.record = new BlueskyRecord(text, parentUri, parentCid, rootUri, rootCid);
   }
 }
 

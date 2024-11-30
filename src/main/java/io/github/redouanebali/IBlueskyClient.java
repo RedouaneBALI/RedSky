@@ -25,7 +25,7 @@ public interface IBlueskyClient {
   /**
    * https://docs.bsky.app/docs/api/com-atproto-repo-create-record
    */
-  Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid);
+  Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid);
 
   /**
    * https://docs.bsky.app/docs/api/com-atproto-repo-delete-record

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RecordDTO {
+public class BlueskyRecord {
 
   @JsonProperty("$type")
   private String       type;
@@ -29,15 +29,15 @@ public class RecordDTO {
   private Actor        author;
   private Reply        reply;
 
-  public RecordDTO(String text) {
+  public BlueskyRecord(String text) {
     this.text      = text;
     this.createdAt = Instant.now().toString();
   }
 
-  public RecordDTO(String text, String parentUri, String parentCid) {
+  public BlueskyRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid) {
     this.text      = text;
     this.createdAt = Instant.now().toString();
-    this.reply     = new Reply(parentUri, parentCid);
+    this.reply     = new Reply(parentUri, parentCid, rootUri, rootCid);
   }
 
   @Data
@@ -74,8 +74,9 @@ public class RecordDTO {
     private Parent parent;
     private Root   root;
 
-    public Reply(String parentUri, String parentCid) {
+    public Reply(String parentUri, String parentCid, String rootUri, String rootCid) {
       this.parent = new Parent(parentUri, parentCid);
+      this.root   = new Root(rootUri, rootCid);
     }
 
     @Data
@@ -92,10 +93,16 @@ public class RecordDTO {
     }
 
     @Data
+    @NoArgsConstructor
     public static class Root {
 
       private String uri;
       private String cid;
+
+      public Root(String uri, String cid) {
+        this.uri = uri;
+        this.cid = cid;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 package io.github.redouanebali.dto.actor;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.github.redouanebali.dto.record.RecordDTO;
+import io.github.redouanebali.dto.record.BlueskyRecord;
 import java.util.List;
 import lombok.Data;
 
@@ -45,15 +45,15 @@ public class Actor {
   @Data
   public static class JoinedViaStarterPack {
 
-    private String      uri;
-    private String      cid;
-    private RecordDTO   record;
-    private Creator     creator;
-    private int         listItemCount;
-    private int         joinedWeekCount;
-    private int         joinedAllTimeCount;
-    private List<Label> labels;
-    private String      indexedAt;
+    private String        uri;
+    private String        cid;
+    private BlueskyRecord record;
+    private Creator       creator;
+    private int           listItemCount;
+    private int           joinedWeekCount;
+    private int           joinedAllTimeCount;
+    private List<Label>   labels;
+    private String        indexedAt;
 
     @Data
     public static class Creator {
