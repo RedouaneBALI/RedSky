@@ -31,6 +31,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,7 +62,7 @@ public class BlueskyClient implements IBlueskyClient {
   private              String       identifier;
 
   public BlueskyClient() {
-    this.client       = new OkHttpClient();
+    this.client       = new OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build();
     this.objectMapper = new ObjectMapper();
   }
 
@@ -383,21 +384,42 @@ public class BlueskyClient implements IBlueskyClient {
 
 
   public Result<FollowersResponse> getFollowers(String actorId, String cursor) {
-    String url = BASE_URL + "app.bsky.graph.getFollowers?limit=100&actor=" + actorId;
+    String url = "https://bsky.social/xrpc/app.bsky.graph.getFollowers?limit=100&actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
-      url += "&" + CURSOR + "=" + cursor;
+      url = url + "&cursor=" + cursor;
     }
-    return executeGetRequest(url, new TypeReference<>() {
+    return executeGetRequest(url, new TypeReference<FollowersResponse>() {
     });
   }
 
   public Result<List<Actor>> getAllFollowers(String actorId) {
-    return getAllPaginatedResults(
-        BASE_URL + "app.bsky.graph.getFollowers?limit=100&actor=" + actorId,
-        cursor -> getFollowers(actorId, cursor)
-    );
-  }
+    int         retries      = 3;
+    List<Actor> allFollowers = new ArrayList<>();
+    String      cursor       = null;
 
+    for (int i = 0; i < retries; i++) {
+      try {
+        Result<FollowersResponse> result = getFollowers(actorId, cursor);
+        if (result.isSuccess()) {
+          FollowersResponse response = result.getValue();
+          allFollowers.addAll(response.getFollowers());
+          cursor = response.getCursor();
+          if (cursor == null) {
+            break;  // No more pages
+          }
+        } else {
+          LOGGER.error("Error while fetching followers: " + result.getError());
+        }
+      } catch (Exception e) {
+        LOGGER.error("Error occurred, retrying...", e);
+        if (i == retries - 1) {
+          return Result.failure(e.getMessage());  // Return the error after retries
+        }
+      }
+    }
+    return Result.success(allFollowers);
+  }
+  
   public Result<UserListsResponse> getUserLists(String actorId, String cursor) {
     String url = BASE_URL + "app.bsky.graph.getLists?actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {

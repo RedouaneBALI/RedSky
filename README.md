@@ -32,10 +32,11 @@ and
   </dependencies>  
 ```
 
+More info on [jitpack](https://jitpack.io/private#RedouaneBALI/redsky).
+
 ## Usage
 
-See usage
-examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/io.github.redouanebali.IntegrationTest.java).
+### Credentials
 
 Credentials can be used with env variable or property file.
 
@@ -69,3 +70,12 @@ bluesky.properties :
 bluesky.username=xxxxxxxx.bsky.social
 bluesky.password=xxxx-xxxx-xxxx-xxxx
 ````
+
+### Available methods
+
+See [here](https://github.com/RedouaneBALI/redsky/blob/main/src/main/java/io/github/redouanebali/IBlueskyClient.java)
+
+### Usage exemples
+
+See usage
+examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/io.github.redouanebali.IntegrationTest.java).
