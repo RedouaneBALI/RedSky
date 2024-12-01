@@ -7,6 +7,33 @@ available [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/main/java/
 
 # How to use it
 
+## Maven
+
+Add in your pom.xml
+
+```
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+```
+
+and
+
+```
+  <dependencies>
+    <dependency>
+      <artifactId>redsky</artifactId>
+      <groupId>com.github.RedouaneBALI</groupId>
+      <version>1.0.1</version>
+    </dependency>
+  </dependencies>  
+```
+
+## Usage
+
 See usage
 examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/io.github.redouanebali.IntegrationTest.java).
 

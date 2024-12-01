@@ -52,7 +52,6 @@ public class BlueskyClient implements IBlueskyClient {
   private static final String       AUTHORIZATION        = "Authorization";
   private static final String       BEARER               = "Bearer ";
   private static final String       CURSOR               = "cursor";
-  private static final String       EMPTY_BODY           = "Empty body in response";
   private static final int          MAX_RETRIES          = 5;
   private static final int          INITIAL_WAIT_TIME_MS = 1000; // 1 second
   private final        OkHttpClient client;
@@ -62,7 +61,7 @@ public class BlueskyClient implements IBlueskyClient {
   private              String       identifier;
 
   public BlueskyClient() {
-    this.client       = SSLUtils.getUnsafeOkHttpClient(); // to be replaced by new OkHttpClient(); out of local scope
+    this.client       = new OkHttpClient();
     this.objectMapper = new ObjectMapper();
   }
 
@@ -126,7 +125,6 @@ public class BlueskyClient implements IBlueskyClient {
         if (response.isSuccessful() && response.body() != null) {
           String responseBody = response.body().string();
           R      result       = objectMapper.readValue(responseBody, responseType);
-          LOGGER.debug(responseBody);
           return Result.success(result);
         } else if (response.code() == 429) {
           LOGGER.warn("Rate limit exceeded, retrying after wait time: " + waitTime + " ms");
