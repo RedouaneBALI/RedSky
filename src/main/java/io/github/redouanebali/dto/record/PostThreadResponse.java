@@ -9,8 +9,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PostThreadResponse {
 
-  private Thread thread;
-  private Thread threadgate;
+  private Thread     thread;
+  private Threadgate threadgate;
 
   @Data
   @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,4 +23,13 @@ public class PostThreadResponse {
 
   }
 
+  @Data
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  public class Threadgate {
+
+    private String        uri;
+    private String        cid;
+    private BlueskyRecord record;
+    private List<String>  lists;
+  }
 }

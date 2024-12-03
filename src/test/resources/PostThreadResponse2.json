@@ -1,0 +1,469 @@
+{
+  "thread": {
+    "$type": "app.bsky.feed.defs#threadViewPost",
+    "post": {
+      "uri": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcdw6bf7ds2f",
+      "cid": "bafyreia24bbd7a6mhaxz623atimcipeahfwddivyswuk7tygboo7knnype",
+      "author": {
+        "did": "did:plc:7x3osrk55wcuveawdk63dmjt",
+        "handle": "dejanthe.bsky.social",
+        "displayName": "Je 🎵 Jan 🎶 The Blouz 🎶",
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:7x3osrk55wcuveawdk63dmjt/bafkreifxybe7cyyhjgwrmuztwvr7rikby5vmf4kowl7d2vx4v2vdr5zdji@jpeg",
+        "viewer": {
+          "muted": false,
+          "blockedBy": false,
+          "followedBy": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.graph.follow/3lbxeheqybo2u"
+        },
+        "labels": [],
+        "createdAt": "2023-09-19T13:17:59.785Z"
+      },
+      "record": {
+        "$type": "app.bsky.feed.post",
+        "createdAt": "2024-12-02T20:02:49.715Z",
+        "facets": [
+          {
+            "$type": "app.bsky.richtext.facet",
+            "features": [
+              {
+                "$type": "app.bsky.richtext.facet#mention",
+                "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf"
+              }
+            ],
+            "index": {
+              "byteEnd": 22,
+              "byteStart": 0
+            }
+          }
+        ],
+        "langs": [
+          "fr"
+        ],
+        "reply": {
+          "parent": {
+            "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+            "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+          },
+          "root": {
+            "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+            "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+          }
+        },
+        "text": "@redthebot.bsky.social analyse ce post"
+      },
+      "replyCount": 1,
+      "repostCount": 0,
+      "likeCount": 0,
+      "quoteCount": 0,
+      "indexedAt": "2024-12-02T20:02:51.624Z",
+      "viewer": {
+        "threadMuted": false,
+        "replyDisabled": false,
+        "embeddingDisabled": false
+      },
+      "labels": []
+    },
+    "parent": {
+      "$type": "app.bsky.feed.defs#threadViewPost",
+      "post": {
+        "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n",
+        "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+        "author": {
+          "did": "did:plc:dgovz25lbubu5wwayzs235uo",
+          "handle": "mamiezinzin.bsky.social",
+          "displayName": "Mamie_Zinzin",
+          "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:dgovz25lbubu5wwayzs235uo/bafkreicukyxckjpp7jwiizisuo7ii3644gfldacf5726leqvk7bqqrulky@jpeg",
+          "viewer": {
+            "muted": false,
+            "blockedBy": false
+          },
+          "labels": [],
+          "createdAt": "2023-08-25T19:01:55.735Z"
+        },
+        "record": {
+          "$type": "app.bsky.feed.post",
+          "createdAt": "2024-11-29T10:57:28.443Z",
+          "embed": {
+            "$type": "app.bsky.embed.images",
+            "images": [
+              {
+                "alt": "En une nuit, une chauve-souris peut avaler la moitié de son poids en moustiques.",
+                "aspectRatio": {
+                  "height": 1537,
+                  "width": 1080
+                },
+                "image": {
+                  "$type": "blob",
+                  "ref": {
+                    "$link": "bafkreiac5mqndfablvi253q35b7hnpexszsa6q4i6pwmsd36qldn2jcm2a"
+                  },
+                  "mimeType": "image/jpeg",
+                  "size": 643792
+                }
+              }
+            ]
+          },
+          "langs": [
+            "fr"
+          ],
+          "text": "Oui, ok... rien d'extraordinaire... Je fais pareil avec la raclette."
+        },
+        "embed": {
+          "$type": "app.bsky.embed.images#view",
+          "images": [
+            {
+              "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:dgovz25lbubu5wwayzs235uo/bafkreiac5mqndfablvi253q35b7hnpexszsa6q4i6pwmsd36qldn2jcm2a@jpeg",
+              "fullsize": "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:dgovz25lbubu5wwayzs235uo/bafkreiac5mqndfablvi253q35b7hnpexszsa6q4i6pwmsd36qldn2jcm2a@jpeg",
+              "alt": "En une nuit, une chauve-souris peut avaler la moitié de son poids en moustiques.",
+              "aspectRatio": {
+                "height": 1537,
+                "width": 1080
+              }
+            }
+          ]
+        },
+        "replyCount": 8,
+        "repostCount": 19,
+        "likeCount": 154,
+        "quoteCount": 0,
+        "indexedAt": "2024-11-29T10:57:36.718Z",
+        "viewer": {
+          "threadMuted": false,
+          "replyDisabled": false,
+          "embeddingDisabled": false
+        },
+        "labels": [],
+        "threadgate": {
+          "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.threadgate/3lc3gcdm77s2n",
+          "cid": "bafyreifl2esufs22l7h5p5zaxslzgwbapqwqjuk73crj65sjjes3hyzfcy",
+          "record": {
+            "$type": "app.bsky.feed.threadgate",
+            "createdAt": "2024-12-02T20:07:33.807Z",
+            "hiddenReplies": [
+              "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcdwb4j22q2n",
+              "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcdw6bf7ds2f"
+            ],
+            "post": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+          },
+          "lists": []
+        }
+      }
+    },
+    "replies": [
+      {
+        "$type": "app.bsky.feed.defs#threadViewPost",
+        "post": {
+          "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcdzf55b6l2q",
+          "cid": "bafyreihrqiongbhbiws6kagyywpaq2ptui7edjswdzkelyeglecj2xztzu",
+          "author": {
+            "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf",
+            "handle": "redthebot.bsky.social",
+            "displayName": "RedTheBot",
+            "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:g7c7qgmpmyysvrhuvyqi34pf/bafkreiej2z2cpqmna6vw5nubrxkji57ta5unhppacyubeapqudeho4xwem@jpeg",
+            "viewer": {
+              "muted": false,
+              "blockedBy": false
+            },
+            "labels": [],
+            "createdAt": "2024-11-23T10:13:10.508Z"
+          },
+          "record": {
+            "$type": "app.bsky.feed.post",
+            "createdAt": "2024-12-02T21:00:21.197675276Z",
+            "reply": {
+              "parent": {
+                "cid": "bafyreia24bbd7a6mhaxz623atimcipeahfwddivyswuk7tygboo7knnype",
+                "uri": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcdw6bf7ds2f"
+              },
+              "root": {
+                "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+                "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+              }
+            },
+            "text": "Top 10 des personnalités suivies (100 derniers likes) : \nguillaumemeurice -> 42%\ngdeleur -> 41%\nsalomesaque -> 40%\nmichaelzemmour -> 32%\nnassiraelmoaddem -> 30%\npierreemmanuel -> 29%\nnilswilcke -> 27%\nmarinetondelier -> 27%\nedwyplenel -> 26%\ncedricmas -> 25%"
+          },
+          "replyCount": 1,
+          "repostCount": 0,
+          "likeCount": 0,
+          "quoteCount": 0,
+          "indexedAt": "2024-12-02T21:00:21.415Z",
+          "viewer": {
+            "threadMuted": false,
+            "replyDisabled": false,
+            "embeddingDisabled": false,
+            "pinned": false
+          },
+          "labels": []
+        },
+        "replies": [
+          {
+            "$type": "app.bsky.feed.defs#threadViewPost",
+            "post": {
+              "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcdznbwg6c2k",
+              "cid": "bafyreibxdb7vhhvmcyvhodlksolx57ybscs3pa5bp2bbde6rpv52jtscza",
+              "author": {
+                "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf",
+                "handle": "redthebot.bsky.social",
+                "displayName": "RedTheBot",
+                "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:g7c7qgmpmyysvrhuvyqi34pf/bafkreiej2z2cpqmna6vw5nubrxkji57ta5unhppacyubeapqudeho4xwem@jpeg",
+                "viewer": {
+                  "muted": false,
+                  "blockedBy": false
+                },
+                "labels": [],
+                "createdAt": "2024-11-23T10:13:10.508Z"
+              },
+              "record": {
+                "$type": "app.bsky.feed.post",
+                "createdAt": "2024-12-02T21:04:54.821Z",
+                "langs": [
+                  "fr"
+                ],
+                "reply": {
+                  "parent": {
+                    "cid": "bafyreihrqiongbhbiws6kagyywpaq2ptui7edjswdzkelyeglecj2xztzu",
+                    "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcdzf55b6l2q"
+                  },
+                  "root": {
+                    "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+                    "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+                  }
+                },
+                "text": "merde pourquoi il a répondu deux fois et 1h d'interval ??"
+              },
+              "replyCount": 1,
+              "repostCount": 0,
+              "likeCount": 1,
+              "quoteCount": 0,
+              "indexedAt": "2024-12-02T21:04:55.424Z",
+              "viewer": {
+                "threadMuted": false,
+                "replyDisabled": false,
+                "embeddingDisabled": false,
+                "pinned": false
+              },
+              "labels": []
+            },
+            "replies": [
+              {
+                "$type": "app.bsky.feed.defs#threadViewPost",
+                "post": {
+                  "uri": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lce6b2i67k2u",
+                  "cid": "bafyreie7zqyqadss5y7u4ceqejxgrvkiezh5me7o5rfz5krqmzutllc6vi",
+                  "author": {
+                    "did": "did:plc:7x3osrk55wcuveawdk63dmjt",
+                    "handle": "dejanthe.bsky.social",
+                    "displayName": "Je 🎵 Jan 🎶 The Blouz 🎶",
+                    "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:7x3osrk55wcuveawdk63dmjt/bafkreifxybe7cyyhjgwrmuztwvr7rikby5vmf4kowl7d2vx4v2vdr5zdji@jpeg",
+                    "viewer": {
+                      "muted": false,
+                      "blockedBy": false,
+                      "followedBy": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.graph.follow/3lbxeheqybo2u"
+                    },
+                    "labels": [],
+                    "createdAt": "2023-09-19T13:17:59.785Z"
+                  },
+                  "record": {
+                    "$type": "app.bsky.feed.post",
+                    "createdAt": "2024-12-02T22:27:33.071Z",
+                    "langs": [
+                      "fr"
+                    ],
+                    "reply": {
+                      "parent": {
+                        "cid": "bafyreibxdb7vhhvmcyvhodlksolx57ybscs3pa5bp2bbde6rpv52jtscza",
+                        "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcdznbwg6c2k"
+                      },
+                      "root": {
+                        "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+                        "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+                      }
+                    },
+                    "text": "Toutes les heures"
+                  },
+                  "replyCount": 1,
+                  "repostCount": 0,
+                  "likeCount": 0,
+                  "quoteCount": 0,
+                  "indexedAt": "2024-12-02T22:27:34.623Z",
+                  "viewer": {
+                    "threadMuted": false,
+                    "replyDisabled": false,
+                    "embeddingDisabled": false
+                  },
+                  "labels": []
+                },
+                "replies": [
+                  {
+                    "$type": "app.bsky.feed.defs#threadViewPost",
+                    "post": {
+                      "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lceyeqvcq22x",
+                      "cid": "bafyreibzwhkh573sjv4ofywwepko6fr2kgljopfl5xg7hfr336wv62pww4",
+                      "author": {
+                        "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf",
+                        "handle": "redthebot.bsky.social",
+                        "displayName": "RedTheBot",
+                        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:g7c7qgmpmyysvrhuvyqi34pf/bafkreiej2z2cpqmna6vw5nubrxkji57ta5unhppacyubeapqudeho4xwem@jpeg",
+                        "viewer": {
+                          "muted": false,
+                          "blockedBy": false
+                        },
+                        "labels": [],
+                        "createdAt": "2024-11-23T10:13:10.508Z"
+                      },
+                      "record": {
+                        "$type": "app.bsky.feed.post",
+                        "createdAt": "2024-12-03T06:14:54.521Z",
+                        "langs": [
+                          "fr"
+                        ],
+                        "reply": {
+                          "parent": {
+                            "cid": "bafyreie7zqyqadss5y7u4ceqejxgrvkiezh5me7o5rfz5krqmzutllc6vi",
+                            "uri": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lce6b2i67k2u"
+                          },
+                          "root": {
+                            "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+                            "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+                          }
+                        },
+                        "text": "Ouais mais il doit répondre qu'une fois mdr"
+                      },
+                      "replyCount": 1,
+                      "repostCount": 0,
+                      "likeCount": 0,
+                      "quoteCount": 0,
+                      "indexedAt": "2024-12-03T06:14:54.412Z",
+                      "viewer": {
+                        "threadMuted": false,
+                        "replyDisabled": false,
+                        "embeddingDisabled": false,
+                        "pinned": false
+                      },
+                      "labels": []
+                    },
+                    "replies": [
+                      {
+                        "$type": "app.bsky.feed.defs#threadViewPost",
+                        "post": {
+                          "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcf2y2o4n222",
+                          "cid": "bafyreigea6xtv7dryjakwgmhqbx3abbsjy5omk5uonrjadrkfptnlnk36i",
+                          "author": {
+                            "did": "did:plc:g7c7qgmpmyysvrhuvyqi34pf",
+                            "handle": "redthebot.bsky.social",
+                            "displayName": "RedTheBot",
+                            "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:g7c7qgmpmyysvrhuvyqi34pf/bafkreiej2z2cpqmna6vw5nubrxkji57ta5unhppacyubeapqudeho4xwem@jpeg",
+                            "viewer": {
+                              "muted": false,
+                              "blockedBy": false
+                            },
+                            "labels": [],
+                            "createdAt": "2024-11-23T10:13:10.508Z"
+                          },
+                          "record": {
+                            "$type": "app.bsky.feed.post",
+                            "createdAt": "2024-12-03T07:01:29.789Z",
+                            "langs": [
+                              "fr"
+                            ],
+                            "reply": {
+                              "parent": {
+                                "cid": "bafyreibzwhkh573sjv4ofywwepko6fr2kgljopfl5xg7hfr336wv62pww4",
+                                "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lceyeqvcq22x"
+                              },
+                              "root": {
+                                "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+                                "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+                              }
+                            },
+                            "text": "c'est bon j'ai identifié le bug, ton post contenait un \"threadgate\" que je n'avais pas géré de mon côté.\nJ'ai poussé le fix."
+                          },
+                          "replyCount": 1,
+                          "repostCount": 0,
+                          "likeCount": 1,
+                          "quoteCount": 0,
+                          "indexedAt": "2024-12-03T07:01:42.321Z",
+                          "viewer": {
+                            "threadMuted": false,
+                            "replyDisabled": false,
+                            "embeddingDisabled": false,
+                            "pinned": false
+                          },
+                          "labels": []
+                        },
+                        "replies": [
+                          {
+                            "$type": "app.bsky.feed.defs#threadViewPost",
+                            "post": {
+                              "uri": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcfboeaktk2v",
+                              "cid": "bafyreiguz45rwlmz5a5e7e6n3i3yfdf55aeuj4mb4duhgumgtewztaehqa",
+                              "author": {
+                                "did": "did:plc:7x3osrk55wcuveawdk63dmjt",
+                                "handle": "dejanthe.bsky.social",
+                                "displayName": "Je 🎵 Jan 🎶 The Blouz 🎶",
+                                "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:7x3osrk55wcuveawdk63dmjt/bafkreifxybe7cyyhjgwrmuztwvr7rikby5vmf4kowl7d2vx4v2vdr5zdji@jpeg",
+                                "viewer": {
+                                  "muted": false,
+                                  "blockedBy": false,
+                                  "followedBy": "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.graph.follow/3lbxeheqybo2u"
+                                },
+                                "labels": [],
+                                "createdAt": "2023-09-19T13:17:59.785Z"
+                              },
+                              "record": {
+                                "$type": "app.bsky.feed.post",
+                                "createdAt": "2024-12-03T09:01:20.479Z",
+                                "langs": [
+                                  "fr"
+                                ],
+                                "reply": {
+                                  "parent": {
+                                    "cid": "bafyreigea6xtv7dryjakwgmhqbx3abbsjy5omk5uonrjadrkfptnlnk36i",
+                                    "uri": "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcf2y2o4n222"
+                                  },
+                                  "root": {
+                                    "cid": "bafyreibvpgdb7ydcnjrasytemgsjsnjfdnfrmptlfbwmrpgwyr7hhfbjve",
+                                    "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+                                  }
+                                },
+                                "text": "Ça continue"
+                              },
+                              "replyCount": 0,
+                              "repostCount": 0,
+                              "likeCount": 0,
+                              "quoteCount": 0,
+                              "indexedAt": "2024-12-03T09:01:21.612Z",
+                              "viewer": {
+                                "threadMuted": false,
+                                "replyDisabled": false,
+                                "embeddingDisabled": false
+                              },
+                              "labels": []
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "threadgate": {
+    "uri": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.threadgate/3lc3gcdm77s2n",
+    "cid": "bafyreifl2esufs22l7h5p5zaxslzgwbapqwqjuk73crj65sjjes3hyzfcy",
+    "record": {
+      "$type": "app.bsky.feed.threadgate",
+      "createdAt": "2024-12-02T20:07:33.807Z",
+      "hiddenReplies": [
+        "at://did:plc:g7c7qgmpmyysvrhuvyqi34pf/app.bsky.feed.post/3lcdwb4j22q2n",
+        "at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcdw6bf7ds2f"
+      ],
+      "post": "at://did:plc:dgovz25lbubu5wwayzs235uo/app.bsky.feed.post/3lc3gcdm77s2n"
+    },
+    "lists": []
+  }
+}

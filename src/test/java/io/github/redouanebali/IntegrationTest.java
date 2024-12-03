@@ -190,7 +190,7 @@ public class IntegrationTest {
   public void getPostThreadTest2() throws IOException {
     Result<PostThreadResponse>
         response =
-        CLIENT.getPostThread("at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lce6b2i67k2u");
+        CLIENT.getPostThread("at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcdw6bf7ds2f");
     assertTrue(response.isSuccess());
     assertEquals("dejanthe.bsky.social", response.getValue().getThread().getPost().getAuthor().getHandle());
   }

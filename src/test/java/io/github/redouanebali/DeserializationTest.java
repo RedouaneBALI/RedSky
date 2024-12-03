@@ -98,6 +98,23 @@ public class DeserializationTest {
   }
 
   @Test
+  public void testDeserializeGetPostThreadWithGate() throws IOException {
+    Path               jsonFilePath = Path.of("src/test/resources/postThreadResponse2.json");
+    String             jsonContent  = Files.readString(jsonFilePath);
+    PostThreadResponse postThread   = objectMapper.readValue(jsonContent, PostThreadResponse.class);
+    assertNotNull(postThread);
+    assertNotNull(postThread.getThread());
+    assertNotNull(postThread.getThread().getPost().getAuthor().getHandle());
+    assertNotNull(postThread.getThread().getPost().getRecord().getText());
+    assertEquals(1, postThread.getThread().getReplies().size());
+    assertNotNull(postThread.getThreadgate());
+    assertNotNull(postThread.getThreadgate().getCid());
+    assertNotNull(postThread.getThreadgate().getUri());
+    assertNotNull(postThread.getThreadgate().getLists());
+    assertNotNull(postThread.getThreadgate().getRecord());
+  }
+
+  @Test
   public void testDeserializeGetProfile() throws IOException {
     Path   jsonFilePath = Path.of("src/test/resources/profile.json");
     String jsonContent  = Files.readString(jsonFilePath);

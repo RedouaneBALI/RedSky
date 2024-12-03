@@ -419,7 +419,7 @@ public class BlueskyClient implements IBlueskyClient {
     }
     return Result.success(allFollowers);
   }
-  
+
   public Result<UserListsResponse> getUserLists(String actorId, String cursor) {
     String url = BASE_URL + "app.bsky.graph.getLists?actor=" + actorId;
     if (cursor != null && !cursor.isEmpty()) {
@@ -537,9 +537,13 @@ public class BlueskyClient implements IBlueskyClient {
     List<Notification> unansweredNotifications = new ArrayList<>();
     for (Notification notification : notifications) {
       if (notification.getReason() == ReasonEnum.MENTION || notification.getReason() == ReasonEnum.REPLY) {
-        AtUri                      recordUri   = notification.getUri();
-        Result<PostThreadResponse> thread      = getPostThread(recordUri.toString());
-        boolean                    hasResponse = isUserInReplies(thread.getValue(), identifier);
+        AtUri                      recordUri = notification.getUri();
+        Result<PostThreadResponse> thread    = getPostThread(recordUri.toString());
+        if (thread.isFailure()) {
+          LOGGER.error("failure when getting the post thread response");
+          continue;
+        }
+        boolean hasResponse = isUserInReplies(thread.getValue(), identifier);
         if (!hasResponse) {
           unansweredNotifications.add(notification);
         }
@@ -549,12 +553,10 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   private boolean isUserInReplies(PostThreadResponse threadResponse, String userHandle) {
-    if (threadResponse == null || threadResponse.getThread() == null) {
-      LOGGER.error("threadResponse or thread null");
-      return false;
-    }
-    for (PostThreadResponse.Thread thread : threadResponse.getThread().getReplies()) {
+    Objects.requireNonNull(threadResponse, "threadResponse cannot be null");
+    Objects.requireNonNull(userHandle, "userHandle cannot be null");
 
+    for (PostThreadResponse.Thread thread : threadResponse.getThread().getReplies()) {
       if (userHandle.equals(thread.getPost().getAuthor().getHandle())) {
         return true;
       }
