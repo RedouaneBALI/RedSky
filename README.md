@@ -27,7 +27,7 @@ and
     <dependency>
       <artifactId>redsky</artifactId>
       <groupId>com.github.RedouaneBALI</groupId>
-      <version>1.0.1</version>
+      <version>1.0.4</version>
     </dependency>
   </dependencies>  
 ```
