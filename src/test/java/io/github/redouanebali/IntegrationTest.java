@@ -138,7 +138,7 @@ public class IntegrationTest {
 
   @Test
   public void getUserLists1stPageTest() {
-    UserListsResponse response = CLIENT.getUserLists("redtheone.bsky.social", null).getValue();
+    UserListsResponse response = CLIENT.getUserLists("redthebot.bsky.social", null).getValue();
     assertNotNull(response);
     assertFalse(response.getLists().isEmpty());
     assertNotNull(response.getLists().getFirst().getUri());
@@ -147,7 +147,7 @@ public class IntegrationTest {
 
   @Test
   public void getAllUserListsTest() {
-    List<UserList> response = CLIENT.getAllUserLists("redtheone.bsky.social").getValue();
+    List<UserList> response = CLIENT.getAllUserLists("redthebot.bsky.social").getValue();
     assertTrue(response.size() > 0);
     response.stream().map(UserList::getName).toList().forEach(LOGGER::debug);
   }
@@ -187,6 +187,16 @@ public class IntegrationTest {
   }
 
   @Test
+  public void getPostThreadTest2() throws IOException {
+    Result<PostThreadResponse>
+        response =
+        CLIENT.getPostThread("at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lce6b2i67k2u");
+    assertTrue(response.isSuccess());
+    assertEquals("dejanthe.bsky.social", response.getValue().getThread().getPost().getAuthor().getHandle());
+  }
+
+
+  @Test
   public void getPostThreadReplyingActorsTest() throws IOException {
     List<Actor>
         actors =
@@ -215,10 +225,17 @@ public class IntegrationTest {
   }
 
   @Test
-  public void getUnansweredNotificationsTest() throws IOException {
+  public void getUnansweredNotificationsFromJsonTest() throws IOException {
     Path                      jsonFilePath            = Path.of("src/test/resources/listNotifications.json");
     String                    jsonContent             = Files.readString(jsonFilePath);
     ListNotificationsResponse listNotifications       = new ObjectMapper().readValue(jsonContent, ListNotificationsResponse.class);
+    List<Notification>        unansweredNotifications = CLIENT.getUnansweredNotifications(listNotifications.getNotifications());
+    assertFalse(unansweredNotifications.isEmpty());
+  }
+
+  @Test
+  public void getUnansweredNotificationsRealNotifsTest() throws IOException {
+    ListNotificationsResponse listNotifications       = CLIENT.getListNotifications(null).getValue();
     List<Notification>        unansweredNotifications = CLIENT.getUnansweredNotifications(listNotifications.getNotifications());
     assertFalse(unansweredNotifications.isEmpty());
   }

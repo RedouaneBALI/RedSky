@@ -6,9 +6,11 @@ import java.util.List;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PostThreadResponse {
 
   private Thread thread;
+  private Thread threadgate;
 
   @Data
   @JsonIgnoreProperties(ignoreUnknown = true)
