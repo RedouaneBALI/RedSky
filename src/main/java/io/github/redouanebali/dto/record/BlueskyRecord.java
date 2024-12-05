@@ -109,8 +109,11 @@ public class BlueskyRecord {
 
     @Data
     @NoArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Parent {
 
+      @JsonProperty("$type")
+      private String type;
       private String uri;
       private String cid;
 
@@ -122,8 +125,11 @@ public class BlueskyRecord {
 
     @Data
     @NoArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Root {
 
+      @JsonProperty("$type")
+      private String type;
       private String uri;
       private String cid;
 

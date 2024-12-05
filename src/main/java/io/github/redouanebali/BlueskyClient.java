@@ -477,7 +477,6 @@ public class BlueskyClient implements IBlueskyClient {
     }
   }
 
-
   @Override
   public Result<ListNotificationsResponse> getListNotifications(final String cursor) {
     String url = BASE_URL + "app.bsky.notification.listNotifications?limit=100";
@@ -489,12 +488,17 @@ public class BlueskyClient implements IBlueskyClient {
     return executeGetRequest(url, typeReference);
   }
 
-  @Override
+
   public Result<List<Notification>> getAllListNotifications() {
-    return getAllPaginatedResults(
-        BASE_URL + "app.bsky.notification.listNotifications?limit=100",
-        this::getListNotifications
-    );
+    return getAllPaginatedResults(BASE_URL + "app.bsky.notification.listNotifications?limit=100", cursor -> getListNotifications(cursor));
+  }
+
+  @Override
+  public Result<ListNotificationsResponse> getListNotifications(int limit) {
+    String url = BASE_URL + "app.bsky.notification.listNotifications?limit=" + limit;
+    TypeReference<ListNotificationsResponse> typeReference = new TypeReference<>() {
+    };
+    return executeGetRequest(url, typeReference);
   }
 
 

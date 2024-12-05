@@ -99,6 +99,11 @@ public interface IBlueskyClient {
   Result<List<Notification>> getAllListNotifications();
 
   /**
+   * https://docs.bsky.app/docs/api/app-bsky-notification-list-notifications
+   */
+  Result<ListNotificationsResponse> getListNotifications(int limit);
+
+  /**
    * https://docs.bsky.app/docs/api/app-bsky-feed-get-post-thread
    */
   Result<PostThreadResponse> getPostThread(String recordUri);

@@ -59,16 +59,10 @@ public class IntegrationTest {
   @Test
   @Disabled("Just for personal use")
   public void getAtUriFromUrl() throws IOException {
-    LOGGER.info(CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbushrpzqk2h"));
-  }
-
-  @Test
-  @Disabled("Just for personal use")
-  public void createRecordTest() {
-    CreateRecordResponse
-        createResponse =
-        CLIENT.createRecord("Et hop, je viens d'apprendre à pouvoir supprimer mes posts ! \uD83D\uDE0F ✅").getValue();
-    assertNotNull(createResponse.getUri());
+    String url = "https://bsky.app/profile/redtheone.bsky.social/post/3lbushrpzqk2h";
+    String uri = CLIENT.getAtUriFromUrl(url);
+    LOGGER.info(uri);
+    assertNotNull(uri);
   }
 
   @Test
@@ -198,13 +192,24 @@ public class IntegrationTest {
     ListNotificationsResponse response = CLIENT.getListNotifications(null).getValue();
     assertNotNull(response);
     assertFalse(response.getNotifications().isEmpty());
+    assertTrue(response.getNotifications().size() <= 100);
   }
 
   @Test
   public void getAllListNotificationsTest() {
     List<Notification> notifications = CLIENT.getAllListNotifications().getValue();
     assertFalse(notifications.isEmpty());
-    assertTrue(notifications.size() > 50);
+    assertTrue(notifications.size() >= 100);
+    assertNotNull(notifications.getFirst().getReason());
+    assertNotNull(notifications.getFirst().getAuthor());
+  }
+
+  @Test
+  public void getAllListNotificationsWithLimitTest() {
+    ListNotificationsResponse listNotificationsResponse = CLIENT.getListNotifications(1).getValue();
+    List<Notification>        notifications             = listNotificationsResponse.getNotifications();
+    assertFalse(notifications.isEmpty());
+    assertEquals(1, notifications.size());
     assertNotNull(notifications.getFirst().getReason());
     assertNotNull(notifications.getFirst().getAuthor());
   }
