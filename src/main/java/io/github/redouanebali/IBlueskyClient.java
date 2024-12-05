@@ -10,6 +10,7 @@ import io.github.redouanebali.dto.lists.UserListResponse;
 import io.github.redouanebali.dto.lists.UserListsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notification;
+import io.github.redouanebali.dto.record.BlueskyRecord.Facet;
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordResponse;
 import io.github.redouanebali.dto.record.PostThreadResponse;
@@ -26,6 +27,11 @@ public interface IBlueskyClient {
    * https://docs.bsky.app/docs/api/com-atproto-repo-create-record
    */
   Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid);
+
+  /**
+   * https://docs.bsky.app/docs/api/com-atproto-repo-create-record
+   */
+  Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid, List<Facet> facets);
 
   /**
    * https://docs.bsky.app/docs/api/com-atproto-repo-delete-record

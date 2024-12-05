@@ -94,6 +94,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <version>1.0.5</version>
+  <version>1.0.7</version>
 
 </project>

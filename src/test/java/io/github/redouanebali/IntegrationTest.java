@@ -15,8 +15,12 @@ import io.github.redouanebali.dto.lists.UserList;
 import io.github.redouanebali.dto.lists.UserListsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notification;
+import io.github.redouanebali.dto.record.BlueskyRecord.Facet;
+import io.github.redouanebali.dto.record.BlueskyRecord.Facet.Feature;
+import io.github.redouanebali.dto.record.BlueskyRecord.Facet.Index;
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordResponse;
+import io.github.redouanebali.dto.record.FeatureType;
 import io.github.redouanebali.dto.record.PostThreadResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -71,6 +75,36 @@ public class IntegrationTest {
   public void createAndDeleteRecordTest() {
     CreateRecordResponse createResponse = CLIENT.createRecord("A supprimer...").getValue();
     assertNotNull(createResponse.getUri());
+    assertEquals("valid", createResponse.getValidationStatus());
+    DeleteRecordResponse deleteResponse = CLIENT.deleteRecord(createResponse.getUri().getRkey()).getValue();
+    assertNotNull(deleteResponse.getCommit().getCid());
+    assertNotNull(deleteResponse.getCommit().getRev());
+  }
+
+  @Test
+  public void createAndDeleteRecordTestWithFacets() throws IOException {
+    PostThreadResponse
+        postThreadResponse =
+        CLIENT.getPostThread(CLIENT.getAtUriFromUrl("https://bsky.app/profile/redtheone.bsky.social/post/3lbat4rmiqk2h")).getValue();
+    Facet facet = Facet.builder()
+                       .features(List.of(Feature.builder()
+                                                .did("did:plc:tavdd37id64nlh74vaclzuwp")
+                                                .type(FeatureType.MENTION)
+                                                .build()))
+                       .index(new Index(22, 32))
+                       .build();
+    List<Facet> facets = List.of(facet);
+    CreateRecordResponse createResponse = CLIENT.createRecord("Ceci est un test pour @redtheone 3...",
+                                                              postThreadResponse.getThread().getPost().getUri().toString(),
+                                                              postThreadResponse.getThread().getPost().getCid(),
+                                                              postThreadResponse.getThread().getPost().getUri().toString(),
+                                                              postThreadResponse.getThread().getPost().getCid(),
+                                                              facets)
+
+                                                .getValue();
+
+    assertNotNull(createResponse.getUri());
+    assertEquals("valid", createResponse.getValidationStatus());
     DeleteRecordResponse deleteResponse = CLIENT.deleteRecord(createResponse.getUri().getRkey()).getValue();
     assertNotNull(deleteResponse.getCommit().getCid());
     assertNotNull(deleteResponse.getCommit().getRev());
@@ -187,7 +221,7 @@ public class IntegrationTest {
   }
 
   @Test
-  public void getPostThreadTest2() throws IOException {
+  public void getPostThreadTest2() {
     Result<PostThreadResponse>
         response =
         CLIENT.getPostThread("at://did:plc:7x3osrk55wcuveawdk63dmjt/app.bsky.feed.post/3lcdw6bf7ds2f");
@@ -234,7 +268,7 @@ public class IntegrationTest {
   }
 
   @Test
-  public void getUnansweredNotificationsRealNotifsTest() throws IOException {
+  public void getUnansweredNotificationsRealNotifsTest() {
     ListNotificationsResponse listNotifications       = CLIENT.getListNotifications(null).getValue();
     List<Notification>        unansweredNotifications = CLIENT.getUnansweredNotifications(listNotifications.getNotifications());
     assertFalse(unansweredNotifications.isEmpty());

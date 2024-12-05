@@ -1,6 +1,8 @@
 package io.github.redouanebali.dto.record;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.github.redouanebali.dto.record.BlueskyRecord.Facet;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -19,6 +21,11 @@ public class CreateRecordRequest {
   public CreateRecordRequest(String text, String did, String parentUri, String parentCid, String rootUri, String rootCid) {
     this.repo   = did;
     this.record = new BlueskyRecord(text, parentUri, parentCid, rootUri, rootCid);
+  }
+
+  public CreateRecordRequest(String text, String did, String parentUri, String parentCid, String rootUri, String rootCid, List<Facet> facets) {
+    this.repo   = did;
+    this.record = new BlueskyRecord(text, parentUri, parentCid, rootUri, rootCid, facets);
   }
 }
 

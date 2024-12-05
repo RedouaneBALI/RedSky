@@ -8,6 +8,7 @@ import io.github.redouanebali.dto.actor.Actor;
 import java.time.Instant;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -40,29 +41,56 @@ public class BlueskyRecord {
     this.reply     = new Reply(parentUri, parentCid, rootUri, rootCid);
   }
 
+  public BlueskyRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid, List<Facet> facets) {
+    this.text      = text;
+    this.createdAt = Instant.now().toString();
+    this.reply     = new Reply(parentUri, parentCid, rootUri, rootCid);
+    this.facets    = facets;
+  }
+
   @Data
+  @Builder
+  @AllArgsConstructor
+  @NoArgsConstructor
   public static class Facet {
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("$type")
     private String        type;
     private List<Feature> features;
     private Index         index;
 
-    @Data
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Feature {
-
-      @JsonProperty("$type")
-      private String type;
-      private String did;
-      private String uri;
+    public Facet(List<Feature> features) {
+      this.type     = "app.bsky.feed.post";
+      this.features = features;
     }
 
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Feature {
+
+      @JsonInclude(JsonInclude.Include.NON_NULL)
+      @JsonProperty("$type")
+      private FeatureType type;
+      private String      did;
+      private String      uri;
+
+      public Feature(FeatureType type, String did) {
+        this.type = type;
+        this.did  = did;
+      }
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Index {
 
-      private Integer byteEnd;
       private Integer byteStart;
+      private Integer byteEnd;
     }
   }
 

@@ -19,6 +19,7 @@ import io.github.redouanebali.dto.login.LoginRequest;
 import io.github.redouanebali.dto.login.LoginResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse;
 import io.github.redouanebali.dto.notifications.ListNotificationsResponse.Notification;
+import io.github.redouanebali.dto.record.BlueskyRecord.Facet;
 import io.github.redouanebali.dto.record.CreateRecordRequest;
 import io.github.redouanebali.dto.record.CreateRecordResponse;
 import io.github.redouanebali.dto.record.DeleteRecordRequest;
@@ -242,16 +243,28 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   public Result<CreateRecordResponse> createRecord(String text) {
-    return createRecord(text, null, null, null, null);
+    return createRecord(text, null, null, null, null, null);
   }
 
   public Result<CreateRecordResponse> createRecord(String text, String parentUri, String parentCid, String rootUri, String rootCid) {
+    return createRecord(text, parentUri, parentCid, rootUri, rootCid, null);
+  }
+
+  @Override
+  public Result<CreateRecordResponse> createRecord(final String text,
+                                                   final String parentUri,
+                                                   final String parentCid,
+                                                   final String rootUri,
+                                                   final String rootCid,
+                                                   final List<Facet> facets) {
     CreateRecordRequest createRecordRequest;
     try {
       if (parentUri == null || parentCid == null || rootUri == null || rootCid == null) {
         createRecordRequest = new CreateRecordRequest(text, did);
-      } else {
+      } else if (facets == null) {
         createRecordRequest = new CreateRecordRequest(text, did, parentUri, parentCid, rootUri, rootCid);
+      } else {
+        createRecordRequest = new CreateRecordRequest(text, did, parentUri, parentCid, rootUri, rootCid, facets);
       }
     } catch (Exception e) {
       String errorMessage = "Exception occurred while creating request object for record: " + text;
