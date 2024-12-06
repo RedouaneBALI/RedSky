@@ -84,7 +84,7 @@
     </dependency>
   </dependencies>
 
-  <groupId>io.github.redouanebali</groupId>
+  <groupId>com.github.redouanebali</groupId>
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -94,6 +94,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <version>1.0.8</version>
+  <version>v1.0.11</version>
 
 </project>

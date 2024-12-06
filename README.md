@@ -78,4 +78,4 @@ See [here](https://github.com/RedouaneBALI/redsky/blob/main/src/main/java/io/git
 ### Usage exemples
 
 See usage
-examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/io.github.redouanebali.IntegrationTest.java).
+examples [here](https://github.com/RedouaneBALI/RedSky/blob/main/src/test/java/com.github.redouanebali.IntegrationTest.java).
