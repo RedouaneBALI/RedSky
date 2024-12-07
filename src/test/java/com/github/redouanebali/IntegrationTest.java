@@ -160,8 +160,8 @@ public class IntegrationTest {
 
   @Test
   public void getAllFollowersTest() {
-    List<Actor> response = CLIENT.getAllFollowers("redtheone.bsky.social").getValue();
-    assertTrue(response.size() > 150);
+    List<Actor> response = CLIENT.getAllFollowers("sreyephleung.bsky.social").getValue();
+    assertTrue(response.size() > 800, "only " + response.size() + " followers found");
   }
 
   @Test

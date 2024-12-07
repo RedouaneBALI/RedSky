@@ -407,11 +407,10 @@ public class BlueskyClient implements IBlueskyClient {
   }
 
   public Result<List<Actor>> getAllFollowers(String actorId) {
-    int         retries      = 3;
     List<Actor> allFollowers = new ArrayList<>();
     String      cursor       = null;
 
-    for (int i = 0; i < retries; i++) {
+    do {
       try {
         Result<FollowersResponse> result = getFollowers(actorId, cursor);
         if (result.isSuccess()) {
@@ -426,11 +425,9 @@ public class BlueskyClient implements IBlueskyClient {
         }
       } catch (Exception e) {
         LOGGER.error("Error occurred, retrying...", e);
-        if (i == retries - 1) {
-          return Result.failure(e.getMessage());  // Return the error after retries
-        }
+        return Result.failure(e.getMessage());
       }
-    }
+    } while (cursor != null);
     return Result.success(allFollowers);
   }
 
